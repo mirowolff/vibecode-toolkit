@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup Complete — Vibecode Toolkit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #0a0a0b;
+            --bg-subtle: #141416;
+            --bg-muted: #1c1c1f;
+            --border: #2a2a2e;
+            --border-light: #3a3a3f;
+            --text: #f4f4f5;
+            --text-muted: #9898a0;
+            --text-dim: #6b6b73;
+            --accent: #8b5cf6;
+            --accent-light: #a78bfa;
+            --green: #22c55e;
+            --blue: #3b82f6;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .ambient {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .ambient::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120%;
+            height: 80%;
+            background: radial-gradient(ellipse at center, rgba(34, 197, 94, 0.06) 0%, transparent 50%);
+        }
+        
+        .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+        
+        header { padding: 20px 0; }
+        
+        .logo {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+        
+        .logo:hover { color: var(--text); }
+        
+        /* Success */
+        .success {
+            text-align: center;
+            padding: 80px 0 50px;
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(34, 197, 94, 0.05));
+            border: 1px solid rgba(34, 197, 94, 0.25);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 36px;
+        }
+        
+        h1 {
+            font-size: 40px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+        
+        .success p {
+            color: var(--text-muted);
+            font-size: 17px;
+        }
+        
+        /* Sections */
+        .section {
+            padding: 48px 0;
+        }
+        
+        .section-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-light);
+            margin-bottom: 20px;
+        }
+        
+        /* Steps */
+        .steps { display: flex; flex-direction: column; gap: 12px; }
+        
+        .step {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 20px 24px;
+            display: flex;
+            gap: 16px;
+        }
+        
+        .step-num {
+            width: 28px;
+            height: 28px;
+            background: var(--bg-muted);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .step-content { flex: 1; }
+        
+        .step-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .step-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        
+        .step-desc code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+        
+        /* Info boxes */
+        .info-boxes { display: flex; flex-direction: column; gap: 12px; }
+        
+        .info-box {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(59, 130, 246, 0.02));
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 14px;
+            padding: 20px 24px;
+        }
+        
+        .info-box-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        
+        .info-box-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        
+        .info-box-desc code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            background: var(--bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        /* Aliases */
+        .alias-card {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+        }
+        
+        .alias-row {
+            display: flex;
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .alias-row:last-child { border-bottom: none; }
+        
+        .alias-key {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            font-weight: 500;
+            width: 80px;
+            color: var(--green);
+        }
+        
+        .alias-val {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        
+        /* Resources */
+        .resources {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        
+        @media (max-width: 500px) {
+            .resources { grid-template-columns: 1fr; }
+        }
+        
+        .resource {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px 20px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.15s;
+        }
+        
+        .resource:hover {
+            border-color: var(--border-light);
+            transform: translateY(-1px);
+        }
+        
+        .resource-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .resource-desc {
+            font-size: 13px;
+            color: var(--text-dim);
+        }
+        
+        /* Footer */
+        footer {
+            padding: 32px 0;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        footer a {
+            font-size: 14px;
+            color: var(--text-dim);
+            text-decoration: none;
+        }
+        
+        footer a:hover { color: var(--text-muted); }
+    </style>
+</head>
+<body>
+    <div class="ambient"></div>
+    
+    <header>
+        <div class="container">
+            <a href="/" class="logo">← vibecode toolkit</a>
+        </div>
+    </header>
+    
+    <main>
+        <section class="success">
+            <div class="container">
+                <div class="success-icon">✓</div>
+                <h1>You're all set</h1>
+                <p>A few more things to get the most out of your setup.</p>
+            </div>
+        </section>
+        
+        <section class="section">
+            <div class="container">
+                <p class="section-label">Do now</p>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-num">1</div>
+                        <div class="step-content">
+                            <div class="step-title">Set Ghostty as your default terminal</div>
+                            <div class="step-desc">System Settings → Desktop & Dock → scroll to bottom → Default terminal application → Ghostty</div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">2</div>
+                        <div class="step-content">
+                            <div class="step-title">Open Ghostty</div>
+                            <div class="step-desc">Find it in Applications or use Spotlight (⌘ + Space, type "Ghostty")</div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">3</div>
+                        <div class="step-content">
+                            <div class="step-title">Try the quick terminal</div>
+                            <div class="step-desc">Press <code>⌘ + `</code> anywhere for a dropdown terminal. Press again to hide.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <div class="container">
+                <p class="section-label">May need access</p>
+                <div class="info-boxes">
+                    <div class="info-box">
+                        <div class="info-box-title">Claude Code</div>
+                        <div class="info-box-desc">Requires an Anthropic API key or organizational license. Run <code>claude</code> to authenticate, or check with your IT team for org access.</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-box-title">GitHub Organization</div>
+                        <div class="info-box-desc">If joining a company's GitHub org, request access through IT. Your SSH key is ready — they just need to add your account.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <div class="container">
+                <p class="section-label">Aliases cheatsheet</p>
+                <div class="alias-card">
+                    <div class="alias-row"><div class="alias-key">c</div><div class="alias-val">claude</div></div>
+                    <div class="alias-row"><div class="alias-key">gs</div><div class="alias-val">git status</div></div>
+                    <div class="alias-row"><div class="alias-key">gp</div><div class="alias-val">git push</div></div>
+                    <div class="alias-row"><div class="alias-key">gl</div><div class="alias-val">git pull</div></div>
+                    <div class="alias-row"><div class="alias-key">gco</div><div class="alias-val">git checkout</div></div>
+                    <div class="alias-row"><div class="alias-key">gcm</div><div class="alias-val">git commit -m "message"</div></div>
+                    <div class="alias-row"><div class="alias-key">gaa</div><div class="alias-val">git add -A</div></div>
+                    <div class="alias-row"><div class="alias-key">ll</div><div class="alias-val">list files with git status</div></div>
+                    <div class="alias-row"><div class="alias-key">cat</div><div class="alias-val">view file with syntax highlighting</div></div>
+                    <div class="alias-row"><div class="alias-key">..</div><div class="alias-val">cd ..</div></div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <div class="container">
+                <p class="section-label">Customize</p>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-num">•</div>
+                        <div class="step-content">
+                            <div class="step-title">Ghostty config</div>
+                            <div class="step-desc">Edit <code>~/.config/ghostty/config</code> — change theme, font size, colors</div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">•</div>
+                        <div class="step-content">
+                            <div class="step-title">Starship prompt</div>
+                            <div class="step-desc">Edit <code>~/.config/starship.toml</code> — customize what shows in your prompt</div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-num">•</div>
+                        <div class="step-content">
+                            <div class="step-title">Add your own aliases</div>
+                            <div class="step-desc">Edit <code>~/.zshrc</code> — add shortcuts for commands you use often</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <div class="container">
+                <p class="section-label">Resources</p>
+                <div class="resources">
+                    <a href="https://docs.anthropic.com/en/docs/claude-code" class="resource" target="_blank">
+                        <div class="resource-title">Claude Code Docs</div>
+                        <div class="resource-desc">Commands, workflows, tips</div>
+                    </a>
+                    <a href="https://ghostty.org/docs" class="resource" target="_blank">
+                        <div class="resource-title">Ghostty Docs</div>
+                        <div class="resource-desc">Configuration, keybindings</div>
+                    </a>
+                    <a href="https://starship.rs/config/" class="resource" target="_blank">
+                        <div class="resource-title">Starship Docs</div>
+                        <div class="resource-desc">Prompt customization</div>
+                    </a>
+                    <a href="https://cli.github.com/manual/" class="resource" target="_blank">
+                        <div class="resource-title">GitHub CLI Docs</div>
+                        <div class="resource-desc">gh commands reference</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <a href="https://github.com/mirowolff/vibecode-toolkit" target="_blank">View on GitHub →</a>
+        </div>
+    </footer>
+</body>
+</html>

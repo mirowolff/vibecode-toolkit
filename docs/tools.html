@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools & Guides - Vibecode Toolkit</title>
+    <meta name="description" content="Learn about each tool included in the Vibecode Toolkit and how to use them effectively.">
+
+    <!-- Favicon - Lucide Terminal icon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fbcc17' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='4 17 10 11 4 5'/><line x1='12' x2='20' y1='19' y2='19'/></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="ambient"></div>
+
+    <nav>
+        <div class="nav-container">
+            <div class="nav-inner">
+                <a href="index.html" class="nav-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="4 17 10 11 4 5"/>
+                        <line x1="12" x2="20" y1="19" y2="19"/>
+                    </svg>
+                </a>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="tools.html" class="nav-link active">Tools</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="https://github.com/mirowolff/vibecode-toolkit" class="nav-link" target="_blank" aria-label="View on GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                            <path d="M9 18c-4.51 2-5-2-7-2"/>
+                        </svg>
+                    </a>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="4" x2="20" y1="12" y2="12"/>
+                        <line x1="4" x2="20" y1="6" y2="6"/>
+                        <line x1="4" x2="20" y1="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <header>
+            <div class="container">
+                <h1>Tools & Guides</h1>
+                <p class="page-subtitle">Everything you need to know about the tools included in Vibecode Toolkit</p>
+            </div>
+        </header>
+
+        <section style="padding-top: 40px;">
+            <div class="container">
+                <!-- Claude Code -->
+                <div class="tool-section">
+                    <div class="tool-header">
+                        <div class="tool-icon-large">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                                <path d="M5 3v4"/>
+                                <path d="M19 17v4"/>
+                                <path d="M3 5h4"/>
+                                <path d="M17 19h4"/>
+                            </svg>
+                        </div>
+                        <div class="tool-title">
+                            <h2>Claude Code</h2>
+                            <p>AI coding assistant in your terminal</p>
+                        </div>
+                    </div>
+                    <div class="tool-content">
+                        <h3>Why this one</h3>
+                        <p>Claude Code is built specifically for AI-assisted development in the terminal. It understands your entire project context and can work with your files directly, making vibecoding locally feel as natural as prompting in a browser.</p>
+
+                        <h3>What it does</h3>
+                        <p>Claude Code is Anthropic's official CLI tool that brings Claude AI directly into your terminal. It helps you write code, debug issues, refactor projects, and learn new concepts without leaving your command line.</p>
+
+                        <h3>Quick start</h3>
+                        <div class="code-example">claude</div>
+                        <p>Simply type <code>claude</code> or use the alias <code>c</code> to start a conversation.</p>
+
+                        <h3>Common uses</h3>
+                        <ul>
+                            <li>Generate boilerplate code and components</li>
+                            <li>Debug errors with context from your codebase</li>
+                            <li>Explain complex code patterns</li>
+                            <li>Refactor and optimize existing code</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Ghostty -->
+                <div class="tool-section">
+                    <div class="tool-header">
+                        <div class="tool-icon-large">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#06c167" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="4 17 10 11 4 5"/>
+                                <line x1="12" x2="20" y1="19" y2="19"/>
+                            </svg>
+                        </div>
+                        <div class="tool-title">
+                            <h2>Ghostty</h2>
+                            <p>Fast, GPU-accelerated terminal</p>
+                        </div>
+                    </div>
+                    <div class="tool-content">
+                        <h3>Why this one</h3>
+                        <p>Ghostty is fast, beautiful, and works perfectly right out of the box. No configuration needed to get started, but highly customizable when you're ready. It's also completely free and built for modern macOS.</p>
+
+                        <h3>What it does</h3>
+                        <p>Ghostty is a modern terminal emulator built for speed and aesthetics. It uses GPU acceleration for smooth rendering and comes pre-configured with sensible defaults.</p>
+
+                        <h3>Why it's great</h3>
+                        <ul>
+                            <li>Lightning-fast performance with GPU rendering</li>
+                            <li>Beautiful out-of-the-box design</li>
+                            <li>Native macOS integration</li>
+                            <li>Highly customizable via <code>~/.config/ghostty/config</code></li>
+                        </ul>
+
+                        <h3>Configuration</h3>
+                        <p>Config file location: <code>~/.config/ghostty/config</code></p>
+                    </div>
+                </div>
+
+                <!-- Starship -->
+                <div class="tool-section">
+                    <div class="tool-header">
+                        <div class="tool-icon-large">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+                                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+                                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+                            </svg>
+                        </div>
+                        <div class="tool-title">
+                            <h2>Starship</h2>
+                            <p>Minimal, fast shell prompt</p>
+                        </div>
+                    </div>
+                    <div class="tool-content">
+                        <h3>Why this one</h3>
+                        <p>Starship shows you exactly what you need to know (Git status, which directory you're in) without being cluttered or overwhelming. It's minimal, fast, and makes the terminal feel more helpful instead of cryptic.</p>
+
+                        <h3>What it does</h3>
+                        <p>Starship is a cross-shell prompt that shows you useful context about your current directory, like Git status, Node version, and command duration.</p>
+
+                        <h3>What you'll see</h3>
+                        <ul>
+                            <li>Current directory (truncated to last 3 levels)</li>
+                            <li>Git branch and status (modified files, commits ahead/behind)</li>
+                            <li>Command execution time (for commands over 2 seconds)</li>
+                            <li>Color-coded success/error indicators</li>
+                        </ul>
+
+                        <h3>Configuration</h3>
+                        <p>Config file location: <code>~/.config/starship.toml</code></p>
+                    </div>
+                </div>
+
+                <!-- CLI Tools -->
+                <div class="tool-section">
+                    <div class="tool-header">
+                        <div class="tool-icon-large">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
+                            </svg>
+                        </div>
+                        <div class="tool-title">
+                            <h2>CLI Power Tools</h2>
+                            <p>Modern Unix tool replacements</p>
+                        </div>
+                    </div>
+                    <div class="tool-content">
+                        <h3>Why these tools</h3>
+                        <p>These are modern, faster, and prettier versions of standard Unix commands. They do what the originals do, just better — with colors, Git integration, and smarter defaults. They make the terminal feel less intimidating and more useful.</p>
+
+                        <h3>ripgrep - Fast code search</h3>
+                        <p>Recursively search directories for regex patterns. Automatically respects .gitignore.</p>
+                        <div class="code-example">rg "function" --type js</div>
+
+                        <h3>bat - Better cat</h3>
+                        <p>View files with syntax highlighting and Git integration. Aliased as <code>cat</code>.</p>
+                        <div class="code-example">bat package.json</div>
+
+                        <h3>eza - Modern ls</h3>
+                        <p>List files with colors, icons, and Git status. Use the alias <code>ll</code>.</p>
+                        <div class="code-example">ll</div>
+
+                        <h3>fzf - Fuzzy finder</h3>
+                        <p>Interactive filtering for commands, files, and history.</p>
+                        <div class="code-example">git log | fzf</div>
+
+                        <h3>jq - JSON processor</h3>
+                        <p>Parse, filter, and format JSON from the command line.</p>
+                        <div class="code-example">curl api.example.com | jq '.data'</div>
+                    </div>
+                </div>
+
+                <!-- Shell Aliases -->
+                <div class="tool-section">
+                    <div class="tool-header">
+                        <div class="tool-icon-large">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                            </svg>
+                        </div>
+                        <div class="tool-title">
+                            <h2>Shell Aliases</h2>
+                            <p>Quick shortcuts for common commands</p>
+                        </div>
+                    </div>
+                    <div class="tool-content">
+                        <h3>Git shortcuts</h3>
+                        <ul>
+                            <li><code>g</code> → git</li>
+                            <li><code>gs</code> → git status</li>
+                            <li><code>gp</code> → git push</li>
+                            <li><code>gl</code> → git pull</li>
+                            <li><code>gco</code> → git checkout</li>
+                            <li><code>gcm</code> → git commit -m</li>
+                            <li><code>gaa</code> → git add -A</li>
+                        </ul>
+
+                        <h3>Other shortcuts</h3>
+                        <ul>
+                            <li><code>c</code> → claude</li>
+                            <li><code>ll</code> → eza -la --git</li>
+                            <li><code>cat</code> → bat --paging=never</li>
+                            <li><code>..</code> → cd ..</li>
+                            <li><code>...</code> → cd ../..</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Made with ❤️ by <a href="https://github.com/mirowolff" target="_blank">@mirowolff</a></p>
+            <a href="#" class="back-to-top">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m18 15-6-6-6 6"/>
+                </svg>
+                Back to top
+            </a>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
