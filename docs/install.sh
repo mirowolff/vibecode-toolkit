@@ -194,7 +194,7 @@ check_zshrc_aliases() {
 
 clear
 echo ""
-echo -e "${BOLD}${YELLOW}❯${NC} ${BOLD}Vibecode Toolkit${NC}"
+echo -e "${YELLOW}❯_${NC} ${BOLD}Vibecode Toolkit${NC}"
 echo -e "${DIM}Development environment for your Mac${NC}"
 echo ""
 divider
