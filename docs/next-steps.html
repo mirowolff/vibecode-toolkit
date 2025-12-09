@@ -186,6 +186,15 @@
             padding: 2px 6px;
             border-radius: 4px;
         }
+
+        .info-box-desc a {
+            color: var(--blue);
+            text-decoration: none;
+        }
+
+        .info-box-desc a:hover {
+            text-decoration: underline;
+        }
         
         /* Aliases */
         .alias-card {
@@ -420,15 +429,51 @@
         
         <section class="section">
             <div class="container">
-                <p class="section-label">May need access</p>
+                <p class="section-label">Miro access</p>
                 <div class="info-boxes">
                     <div class="info-box">
-                        <div class="info-box-title">Claude Code</div>
-                        <div class="info-box-desc">Requires an Anthropic API key or organizational license. Run <code>claude</code> to authenticate, or check with your IT team for org access.</div>
+                        <div class="info-box-title">Check your access</div>
+                        <div class="info-box-desc">Visit <a href="https://miro.okta.com" target="_blank">miro.okta.com</a> to see if you have access to Claude, Cursor, and other tools.</div>
                     </div>
                     <div class="info-box">
-                        <div class="info-box-title">GitHub Organization</div>
-                        <div class="info-box-desc">If joining a company's GitHub org, request access through IT. Your SSH key is ready — they just need to add your account.</div>
+                        <div class="info-box-title">GitHub Organization (miroapp-dev)</div>
+                        <div class="info-box-desc">To work with Miro's codebase, you need access to the <code>miroapp-dev</code> org. Check Okta or submit a request.</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-box-title">Need access?</div>
+                        <div class="info-box-desc">Submit a ticket via <a href="https://miro.atlassian.net/servicedesk" target="_blank">JSM Service Desk</a> to request access to any tools.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <p class="section-label">MCP Servers (pre-configured)</p>
+                <div class="info-boxes">
+                    <div class="info-box">
+                        <div class="info-box-title">Context7</div>
+                        <div class="info-box-desc">Up-to-date documentation for any library. Use <code>use context7</code> in your prompts to fetch current docs.</div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-box-title">Figma MCP</div>
+                        <div class="info-box-desc">Access Figma designs in Claude. Update your Figma API token: <code>claude mcp add figma -- npx -y figma-developer-mcp --figma-api-key=YOUR_TOKEN --stdio</code></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <p class="section-label">Miro Design System</p>
+                <div class="info-boxes">
+                    <div class="info-box">
+                        <div class="info-box-title">Mirotone</div>
+                        <div class="info-box-desc">Miro's UI kit for building apps. Install with <code>npm i mirotone</code> — <a href="https://www.mirotone.xyz" target="_blank">mirotone.xyz</a></div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-box-title">Miro Design</div>
+                        <div class="info-box-desc">Full design system documentation at <a href="https://miro.design" target="_blank">miro.design</a></div>
                     </div>
                 </div>
             </div>

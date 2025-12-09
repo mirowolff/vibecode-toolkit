@@ -1,5 +1,9 @@
 import { serve } from "bun";
 import { file } from "bun";
+import { dirname, join } from "path";
+
+// Get the directory where this script lives (docs/)
+const docsDir = dirname(import.meta.path);
 
 serve({
   port: 3000,
@@ -13,8 +17,8 @@ serve({
       path = "/index.html";
     }
 
-    // Serve the file from current directory
-    const filePath = `.${path}`;
+    // Serve the file from docs directory
+    const filePath = join(docsDir, path);
     const response = file(filePath);
 
     // Check if file exists
