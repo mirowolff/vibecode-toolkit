@@ -456,56 +456,20 @@
 
         <section class="section">
             <div class="container">
-                <p class="section-label">MCP Servers</p>
+                <p class="section-label">MCP Servers (configured)</p>
                 <div class="info-boxes">
                     <div class="info-box">
-                        <div class="info-box-title">Context7 (pre-configured)</div>
+                        <div class="info-box-title">Context7</div>
                         <div class="info-box-desc">Up-to-date documentation for any library. Use <code>use context7</code> in your prompts to fetch current docs.</div>
                     </div>
                     <div class="info-box">
-                        <div class="info-box-title">Figma MCP (official)</div>
-                        <div class="info-box-desc">Access Figma designs in Claude. Requires paid Figma plan. Add to <code>~/.claude.json</code>:</div>
-                    </div>
-                </div>
-                <div class="code-block">
-<pre>{
-  "mcpServers": {
-    "figma": {
-      "type": "http",
-      "url": "https://mcp.figma.com/mcp"
-    }
-  }
-}</pre>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <div class="container">
-                <p class="section-label">Miro Design System</p>
-                <div class="info-boxes">
-                    <div class="info-box">
-                        <div class="info-box-title">Miro Design</div>
-                        <div class="info-box-desc">Full design system documentation at <a href="https://miro.design" target="_blank">miro.design</a></div>
+                        <div class="info-box-title">Figma MCP</div>
+                        <div class="info-box-desc">Access Figma designs directly in Claude. Pull in variables, components, and layout data.</div>
                     </div>
                     <div class="info-box">
-                        <div class="info-box-title">Miro DS MCP Server</div>
-                        <div class="info-box-desc">Get your access token at <a href="https://miro.design/mcp/token" target="_blank">miro.design/mcp/token</a>, then add to <code>~/.claude.json</code>:</div>
+                        <div class="info-box-title">Miro Design System</div>
+                        <div class="info-box-desc">Miro's design system context in Claude. Documentation at <a href="https://miro.design" target="_blank">miro.design</a></div>
                     </div>
-                </div>
-                <div class="code-block">
-<pre>{
-  "mcpServers": {
-    "miro-design-system": {
-      "type": "http",
-      "url": "https://miro.design/api/mcp",
-      "headers": {
-        "Authorization": "Bearer YOUR_TOKEN",
-        "X-User-Email": "your@miro.com"
-      }
-    }
-  }
-}</pre>
                 </div>
             </div>
         </section>
