@@ -27,6 +27,7 @@ BULLET="${GRAY}•${NC}"
 SPARKLE="${MAGENTA}✦${NC}"
 
 REPO_URL="https://mirowolff.github.io/vibecode-toolkit"
+VERSION="1.0"
 
 # =============================================================================
 # HELPERS
@@ -191,7 +192,7 @@ check_zshrc_configured() {
 
 clear
 echo ""
-echo -e "${YELLOW}❯_${NC} ${BOLD}Vibecode Toolkit${NC}"
+echo -e "${YELLOW}❯_${NC} ${BOLD}Vibecode Toolkit${NC} ${DIM}v${VERSION}${NC}"
 echo -e "${DIM}Development environment for your Mac${NC}"
 echo ""
 divider
