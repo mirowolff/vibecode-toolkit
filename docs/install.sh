@@ -1,5 +1,5 @@
 #!/bin/bash
-# v1.0.1
+# https://mirowolff.github.io/vibecode-toolkit/install.sh
 
 set -e
 
