@@ -2,6 +2,8 @@
 
 Local development environment for designers learning to vibecode.
 
+**Website:** https://mirowolff.github.io/vibecode-toolkit/
+
 ## Install
 
 ```bash
