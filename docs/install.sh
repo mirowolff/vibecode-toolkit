@@ -121,6 +121,14 @@ check_brew() {
 
 check_tool() {
     local tool="$1"
+    local cmd="${tool##*/}"  # Get the command name (last part after /)
+
+    # First check if command exists in PATH
+    if command -v "$cmd" &>/dev/null; then
+        return 0
+    fi
+
+    # Fallback to brew list
     if [[ "$tool" == "oven-sh/bun/bun" ]]; then
         brew list bun &>/dev/null 2>&1
     else
@@ -129,7 +137,23 @@ check_tool() {
 }
 
 check_cask() {
-    brew list --cask "$1" &>/dev/null 2>&1
+    local cask="$1"
+    local app_name=""
+
+    # Map cask names to app names
+    case "$cask" in
+        "ghostty") app_name="Ghostty" ;;
+        "github") app_name="GitHub Desktop" ;;
+        *) app_name="$cask" ;;
+    esac
+
+    # Check if app exists in /Applications
+    if [[ -d "/Applications/${app_name}.app" ]]; then
+        return 0
+    fi
+
+    # Fallback to brew list
+    brew list --cask "$cask" &>/dev/null 2>&1
 }
 
 check_xcode_cli() {
@@ -170,7 +194,7 @@ check_zshrc_aliases() {
 
 clear
 echo ""
-echo -e "${BOLD}${MAGENTA}▲${NC} ${BOLD}Vibecode Toolkit${NC}"
+echo -e "${BOLD}${YELLOW}❯${NC} ${BOLD}Vibecode Toolkit${NC}"
 echo -e "${DIM}Development environment for your Mac${NC}"
 echo ""
 divider
