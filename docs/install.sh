@@ -546,10 +546,54 @@ fi
 # Claude Code MCP servers
 print_step "Configuring Claude Code MCP servers..."
 claude mcp add context7 -- npx -y @upstash/context7-mcp@latest 2>/dev/null || true
-claude mcp add figma -- npx -y figma-developer-mcp --figma-api-key=YOUR_FIGMA_TOKEN --stdio 2>/dev/null || true
-print_success "Claude Code MCP servers"
+print_success "Context7 MCP configured"
+
 echo ""
-echo -e "${DIM}Note: Configure Miro Design System MCP at${NC} ${BLUE}miro.design/mcp/token${NC}"
+
+# Miro Design System MCP
+echo -e "${BOLD}Miro Design System MCP${NC}"
+echo ""
+echo -e "${DIM}Get your token at:${NC} ${BLUE}https://miro.design/mcp/token${NC}"
+echo ""
+open "https://miro.design/mcp/token" 2>/dev/null || true
+
+echo -e -n "Paste your Miro DS token ${DIM}(or press Enter to skip):${NC} "
+read -r MIRO_DS_TOKEN
+
+if [[ -n "$MIRO_DS_TOKEN" ]]; then
+    echo -e -n "Enter your Miro email: "
+    read -r MIRO_EMAIL
+
+    # Create or update ~/.claude.json
+    CLAUDE_CONFIG="$HOME/.claude.json"
+
+    if [[ -f "$CLAUDE_CONFIG" ]]; then
+        # Backup existing config
+        cp "$CLAUDE_CONFIG" "${CLAUDE_CONFIG}.backup"
+    fi
+
+    # Write the MCP config
+    cat > "$CLAUDE_CONFIG" << EOF
+{
+  "mcpServers": {
+    "miro-design-system": {
+      "type": "http",
+      "url": "https://miro.design/api/mcp",
+      "headers": {
+        "Authorization": "Bearer ${MIRO_DS_TOKEN}",
+        "X-User-Email": "${MIRO_EMAIL}"
+      }
+    }
+  }
+}
+EOF
+    print_success "Miro DS MCP configured"
+else
+    echo -e "${DIM}Skipped. You can configure it later in ~/.claude.json${NC}"
+fi
+
+echo ""
+echo -e "${DIM}Note: Add Figma MCP manually if needed:${NC} ${BLUE}mcp.figma.com${NC}"
 
 echo ""
 

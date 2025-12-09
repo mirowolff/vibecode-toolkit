@@ -456,16 +456,26 @@
 
         <section class="section">
             <div class="container">
-                <p class="section-label">MCP Servers (pre-configured)</p>
+                <p class="section-label">MCP Servers</p>
                 <div class="info-boxes">
                     <div class="info-box">
-                        <div class="info-box-title">Context7</div>
+                        <div class="info-box-title">Context7 (pre-configured)</div>
                         <div class="info-box-desc">Up-to-date documentation for any library. Use <code>use context7</code> in your prompts to fetch current docs.</div>
                     </div>
                     <div class="info-box">
-                        <div class="info-box-title">Figma MCP</div>
-                        <div class="info-box-desc">Access Figma designs in Claude. Update your Figma API token: <code>claude mcp add figma -- npx -y figma-developer-mcp --figma-api-key=YOUR_TOKEN --stdio</code></div>
+                        <div class="info-box-title">Figma MCP (official)</div>
+                        <div class="info-box-desc">Access Figma designs in Claude. Requires paid Figma plan. Add to <code>~/.claude.json</code>:</div>
                     </div>
+                </div>
+                <div class="code-block">
+<pre>{
+  "mcpServers": {
+    "figma": {
+      "type": "http",
+      "url": "https://mcp.figma.com/mcp"
+    }
+  }
+}</pre>
                 </div>
             </div>
         </section>
