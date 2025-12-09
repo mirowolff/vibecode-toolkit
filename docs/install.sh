@@ -3,13 +3,28 @@
 
 set -e
 
-# Colors
+# =============================================================================
+# COLORS & SYMBOLS
+# =============================================================================
+
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
+MAGENTA='\033[0;35m'
+CYAN='\033[0;36m'
+GRAY='\033[0;90m'
 BOLD='\033[1m'
+DIM='\033[2m'
 NC='\033[0m'
+
+# Symbols
+CHECK="${GREEN}✓${NC}"
+CROSS="${RED}✗${NC}"
+ARROW="${BLUE}→${NC}"
+WARN="${YELLOW}!${NC}"
+BULLET="${GRAY}•${NC}"
+SPARKLE="${MAGENTA}✦${NC}"
 
 REPO_URL="https://mirowolff.github.io/vibecode-toolkit"
 
@@ -18,40 +33,82 @@ REPO_URL="https://mirowolff.github.io/vibecode-toolkit"
 # =============================================================================
 
 print_step() {
-    echo -e "${BLUE}→${NC} $1"
+    echo -e "${ARROW} $1"
 }
 
 print_success() {
-    echo -e "${GREEN}✓${NC} $1"
+    echo -e "${CHECK} $1"
 }
 
 print_warning() {
-    echo -e "${YELLOW}!${NC} $1"
+    echo -e "${WARN} $1"
 }
 
 print_error() {
-    echo -e "${RED}✗${NC} $1"
+    echo -e "${CROSS} $1"
 }
 
 print_installed() {
-    echo -e "  ${GREEN}✓${NC} $1 ${GRAY}(installed)${NC}"
+    echo -e "  ${CHECK} $1 ${DIM}installed${NC}"
 }
 
 print_will_install() {
-    echo -e "  ${BLUE}→${NC} $1"
+    echo -e "  ${ARROW} $1"
+}
+
+print_item() {
+    echo -e "  ${BULLET} $1"
+}
+
+# Animated spinner for background tasks
+spinner() {
+    local pid=$1
+    local message=$2
+    local spin='⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏'
+    local i=0
+
+    tput civis  # Hide cursor
+    while kill -0 $pid 2>/dev/null; do
+        i=$(( (i + 1) % 10 ))
+        printf "\r${BLUE}${spin:$i:1}${NC} ${message}"
+        sleep 0.1
+    done
+    tput cnorm  # Show cursor
+    printf "\r"
+}
+
+# Progress bar
+progress_bar() {
+    local current=$1
+    local total=$2
+    local width=30
+    local percent=$((current * 100 / total))
+    local filled=$((current * width / total))
+    local empty=$((width - filled))
+
+    printf "\r  ${DIM}[${NC}"
+    printf "${GREEN}%${filled}s${NC}" | tr ' ' '█'
+    printf "${GRAY}%${empty}s${NC}" | tr ' ' '░'
+    printf "${DIM}]${NC} ${percent}%%"
 }
 
 ask_yes_no() {
     local prompt="$1"
     local response
     while true; do
-        read -p "$prompt (y/n): " response
+        echo -e -n "${prompt} ${DIM}(y/n)${NC} "
+        read response
         case "$response" in
             [yY]|[yY][eE][sS]) return 0 ;;
             [nN]|[nN][oO]) return 1 ;;
-            *) echo "Please answer y or n." ;;
+            *) echo -e "${DIM}Please answer y or n.${NC}" ;;
         esac
     done
+}
+
+# Divider line
+divider() {
+    echo -e "${DIM}────────────────────────────────────────${NC}"
 }
 
 # =============================================================================
@@ -113,33 +170,47 @@ check_zshrc_aliases() {
 
 clear
 echo ""
-echo -e "${BOLD}Vibecode Toolkit${NC}"
-echo -e "Development environment for your Mac"
+echo -e "${BOLD}${MAGENTA}▲${NC} ${BOLD}Vibecode Toolkit${NC}"
+echo -e "${DIM}Development environment for your Mac${NC}"
 echo ""
-echo "This script will set up your Mac with tools for local development:"
-echo "terminal, CLI utilities, and GitHub integration."
+divider
+echo ""
+echo -e "This will set up your Mac with:"
+echo ""
+print_item "Modern terminal ${DIM}(Ghostty)${NC}"
+print_item "AI coding assistant ${DIM}(Claude Code)${NC}"
+print_item "CLI utilities ${DIM}(git, node, bun, etc.)${NC}"
+print_item "GitHub integration ${DIM}(SSH + CLI)${NC}"
+echo ""
+divider
 echo ""
 
 # =============================================================================
 # STATUS CHECK
 # =============================================================================
 
-echo -e "${BOLD}Checking current setup...${NC}"
+echo -e "${BOLD}Checking your setup${NC}"
 echo ""
 
 NEED_INSTALL=false
+INSTALLED_COUNT=0
+TOTAL_COUNT=0
 
 # Prerequisites
+TOTAL_COUNT=$((TOTAL_COUNT + 1))
 if check_xcode_cli; then
     print_installed "Xcode Command Line Tools"
+    INSTALLED_COUNT=$((INSTALLED_COUNT + 1))
 else
     print_will_install "Xcode Command Line Tools"
     NEED_INSTALL=true
 fi
 
 if [[ $(uname -m) == "arm64" ]]; then
+    TOTAL_COUNT=$((TOTAL_COUNT + 1))
     if check_rosetta; then
         print_installed "Rosetta 2"
+        INSTALLED_COUNT=$((INSTALLED_COUNT + 1))
     else
         print_will_install "Rosetta 2"
         NEED_INSTALL=true
@@ -147,8 +218,10 @@ if [[ $(uname -m) == "arm64" ]]; then
 fi
 
 # Homebrew
+TOTAL_COUNT=$((TOTAL_COUNT + 1))
 if check_brew; then
     print_installed "Homebrew"
+    INSTALLED_COUNT=$((INSTALLED_COUNT + 1))
 else
     print_will_install "Homebrew"
     NEED_INSTALL=true
@@ -172,8 +245,10 @@ CLI_TOOLS=(
 for item in "${CLI_TOOLS[@]}"; do
     tool="${item%%:*}"
     name="${item##*:}"
+    TOTAL_COUNT=$((TOTAL_COUNT + 1))
     if check_brew && check_tool "$tool"; then
         print_installed "$name"
+        INSTALLED_COUNT=$((INSTALLED_COUNT + 1))
     else
         print_will_install "$name"
         NEED_INSTALL=true
@@ -189,8 +264,10 @@ CASK_APPS=(
 for item in "${CASK_APPS[@]}"; do
     cask="${item%%:*}"
     name="${item##*:}"
+    TOTAL_COUNT=$((TOTAL_COUNT + 1))
     if check_brew && check_cask "$cask"; then
         print_installed "$name"
+        INSTALLED_COUNT=$((INSTALLED_COUNT + 1))
     else
         print_will_install "$name"
         NEED_INSTALL=true
@@ -198,22 +275,28 @@ for item in "${CASK_APPS[@]}"; do
 done
 
 # Configs
+TOTAL_COUNT=$((TOTAL_COUNT + 1))
 if check_ghostty_config; then
     print_installed "Ghostty config"
+    INSTALLED_COUNT=$((INSTALLED_COUNT + 1))
 else
     print_will_install "Ghostty config"
     NEED_INSTALL=true
 fi
 
+TOTAL_COUNT=$((TOTAL_COUNT + 1))
 if check_starship_config; then
     print_installed "Starship config"
+    INSTALLED_COUNT=$((INSTALLED_COUNT + 1))
 else
     print_will_install "Starship config"
     NEED_INSTALL=true
 fi
 
+TOTAL_COUNT=$((TOTAL_COUNT + 1))
 if check_zshrc_starship && check_zshrc_aliases; then
     print_installed "Shell configuration"
+    INSTALLED_COUNT=$((INSTALLED_COUNT + 1))
 else
     print_will_install "Shell configuration"
     NEED_INSTALL=true
@@ -226,18 +309,27 @@ if ! check_ssh_key || ! check_gh_auth; then
 fi
 
 echo ""
+echo -e "${DIM}${INSTALLED_COUNT}/${TOTAL_COUNT} components ready${NC}"
+echo ""
 
 # =============================================================================
 # ALL SET?
 # =============================================================================
 
 if [[ "$NEED_INSTALL" == false ]] && [[ "$NEED_GITHUB" == false ]]; then
-    echo -e "${GREEN}You're all set!${NC} Everything is already installed."
+    echo -e "${GREEN}${BOLD}You're all set!${NC} ${SPARKLE}"
+    echo -e "${DIM}Everything is already installed.${NC}"
     echo ""
     if ask_yes_no "Open Ghostty with the next steps guide?"; then
+        echo ""
+        print_step "Opening Ghostty..."
         open "${REPO_URL}/next-steps.html"
+        sleep 0.5
         open -a Ghostty
     fi
+    echo ""
+    echo -e "${DIM}Happy vibecoding!${NC} ${SPARKLE}"
+    echo ""
     exit 0
 fi
 
@@ -245,9 +337,14 @@ fi
 # CONFIRM INSTALL
 # =============================================================================
 
+divider
+echo ""
+
 if [[ "$NEED_INSTALL" == true ]]; then
-    if ! ask_yes_no "Install missing tools?"; then
-        echo "Installation cancelled."
+    if ! ask_yes_no "Install missing components?"; then
+        echo ""
+        echo -e "${DIM}Installation cancelled.${NC}"
+        echo ""
         exit 0
     fi
     echo ""
@@ -259,8 +356,10 @@ fi
 
 SKIP_GITHUB=false
 if [[ "$NEED_GITHUB" == true ]]; then
+    divider
+    echo ""
     echo -e "${BOLD}GitHub Setup${NC}"
-    echo "This configures SSH keys and authenticates the GitHub CLI."
+    echo -e "${DIM}SSH keys and CLI authentication${NC}"
     echo ""
 
     if ! ask_yes_no "Do you have a GitHub account?"; then
@@ -268,16 +367,27 @@ if [[ "$NEED_GITHUB" == true ]]; then
         print_step "Opening GitHub signup..."
         open "https://github.com/signup"
         echo ""
-        echo "Create your account, then come back here."
-        read -p "Press Enter when you have a GitHub account..."
+        echo -e "${DIM}Create your account, then come back here.${NC}"
+        read -p "Press Enter when ready..."
         echo ""
     fi
 
     if ! ask_yes_no "Set up GitHub integration?"; then
         SKIP_GITHUB=true
+        echo ""
+        echo -e "${DIM}You can set this up later.${NC}"
     fi
     echo ""
 fi
+
+# =============================================================================
+# INSTALLATION
+# =============================================================================
+
+divider
+echo ""
+echo -e "${BOLD}Installing${NC}"
+echo ""
 
 # =============================================================================
 # XCODE CLI TOOLS
@@ -288,14 +398,15 @@ if ! check_xcode_cli; then
     xcode-select --install 2>/dev/null || true
 
     echo ""
-    print_warning "A dialog will appear. Click 'Install' and wait for it to complete."
+    echo -e "${WARN} ${YELLOW}A dialog will appear. Click 'Install' and wait for it to complete.${NC}"
+    echo ""
     read -p "Press Enter when the installation is finished..."
 
     if ! check_xcode_cli; then
         print_error "Xcode Command Line Tools installation failed"
         exit 1
     fi
-    print_success "Xcode Command Line Tools installed"
+    print_success "Xcode Command Line Tools"
     echo ""
 fi
 
@@ -305,8 +416,8 @@ fi
 
 if [[ $(uname -m) == "arm64" ]] && ! check_rosetta; then
     print_step "Installing Rosetta 2..."
-    softwareupdate --install-rosetta --agree-to-license
-    print_success "Rosetta 2 installed"
+    softwareupdate --install-rosetta --agree-to-license &>/dev/null
+    print_success "Rosetta 2"
     echo ""
 fi
 
@@ -316,6 +427,7 @@ fi
 
 if ! check_brew; then
     print_step "Installing Homebrew..."
+    echo ""
     NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
     # Add to path for this session
@@ -324,12 +436,14 @@ if ! check_brew; then
     else
         eval "$(/usr/local/bin/brew shellenv)"
     fi
-    print_success "Homebrew installed"
+    echo ""
+    print_success "Homebrew"
     echo ""
 fi
 
 print_step "Updating Homebrew..."
-brew update --quiet
+brew update --quiet &
+spinner $! "Updating Homebrew..."
 print_success "Homebrew updated"
 echo ""
 
@@ -337,20 +451,23 @@ echo ""
 # CLI TOOLS
 # =============================================================================
 
-echo -e "${BOLD}Installing CLI tools...${NC}"
+echo -e "${BOLD}CLI Tools${NC}"
 echo ""
+
+TOOL_INDEX=0
+TOOL_COUNT=${#CLI_TOOLS[@]}
 
 for item in "${CLI_TOOLS[@]}"; do
     tool="${item%%:*}"
     name="${item##*:}"
-    tool_name=$(basename "$tool")
+    TOOL_INDEX=$((TOOL_INDEX + 1))
 
     if check_tool "$tool"; then
-        print_success "$name (already installed)"
+        print_success "$name ${DIM}already installed${NC}"
     else
         print_step "Installing $name..."
-        brew install "$tool" --quiet
-        print_success "$name installed"
+        brew install "$tool" --quiet 2>/dev/null
+        print_success "$name"
     fi
 done
 
@@ -360,7 +477,7 @@ echo ""
 # APPLICATIONS
 # =============================================================================
 
-echo -e "${BOLD}Installing applications...${NC}"
+echo -e "${BOLD}Applications${NC}"
 echo ""
 
 for item in "${CASK_APPS[@]}"; do
@@ -368,40 +485,41 @@ for item in "${CASK_APPS[@]}"; do
     name="${item##*:}"
 
     if check_cask "$cask"; then
-        print_success "$name (already installed)"
+        print_success "$name ${DIM}already installed${NC}"
     else
         print_step "Installing $name..."
-        brew install --cask "$cask" --quiet
-        print_success "$name installed"
+        brew install --cask "$cask" --quiet 2>/dev/null
+        print_success "$name"
     fi
 done
 
 echo ""
 
 # =============================================================================
-# GHOSTTY CONFIG
+# CONFIGURATION
 # =============================================================================
 
+echo -e "${BOLD}Configuration${NC}"
+echo ""
+
+# Ghostty config
 if ! check_ghostty_config; then
     print_step "Configuring Ghostty..."
     mkdir -p ~/.config/ghostty
     curl -fsSL "${REPO_URL}/config/ghostty.conf" -o ~/.config/ghostty/config
-    print_success "Ghostty configured"
+    print_success "Ghostty config"
 else
-    print_success "Ghostty config (already configured)"
+    print_success "Ghostty config ${DIM}already configured${NC}"
 fi
 
-# =============================================================================
-# STARSHIP CONFIG
-# =============================================================================
-
+# Starship config
 if ! check_starship_config; then
     print_step "Configuring Starship..."
     mkdir -p ~/.config
     curl -fsSL "${REPO_URL}/config/starship.toml" -o ~/.config/starship.toml
-    print_success "Starship configured"
+    print_success "Starship config"
 else
-    print_success "Starship config (already configured)"
+    print_success "Starship config ${DIM}already configured${NC}"
 fi
 
 echo ""
@@ -421,29 +539,33 @@ if [[ "$SKIP_GITHUB" == false ]]; then
 
         if ! ask_yes_no "Use existing SSH key for GitHub?"; then
             SSH_KEY_PATH="$HOME/.ssh/id_ed25519_github"
-            print_step "Generating new SSH key for GitHub..."
-            read -p "Enter your email address: " email
+            echo ""
+            echo -e -n "${DIM}Enter your email address:${NC} "
+            read email
             mkdir -p ~/.ssh
-            ssh-keygen -t ed25519 -C "$email" -f "$SSH_KEY_PATH" -N ""
+            ssh-keygen -t ed25519 -C "$email" -f "$SSH_KEY_PATH" -N "" -q
             print_success "SSH key generated"
         fi
     elif [[ -f "$HOME/.ssh/id_rsa" ]]; then
-        print_success "SSH key exists (RSA)"
+        print_success "SSH key exists ${DIM}(RSA)${NC}"
         SSH_KEY_PATH="$HOME/.ssh/id_rsa"
 
-        if ask_yes_no "Create a new ed25519 key for GitHub? (recommended)"; then
+        if ask_yes_no "Create a new ed25519 key? ${DIM}(recommended)${NC}"; then
             SSH_KEY_PATH="$HOME/.ssh/id_ed25519"
-            print_step "Generating SSH key..."
-            read -p "Enter your email address: " email
+            echo ""
+            echo -e -n "${DIM}Enter your email address:${NC} "
+            read email
             mkdir -p ~/.ssh
-            ssh-keygen -t ed25519 -C "$email" -f "$SSH_KEY_PATH" -N ""
+            ssh-keygen -t ed25519 -C "$email" -f "$SSH_KEY_PATH" -N "" -q
             print_success "SSH key generated"
         fi
     else
         print_step "Generating SSH key..."
-        read -p "Enter your email address: " email
+        echo ""
+        echo -e -n "${DIM}Enter your email address:${NC} "
+        read email
         mkdir -p ~/.ssh
-        ssh-keygen -t ed25519 -C "$email" -f "$SSH_KEY_PATH" -N ""
+        ssh-keygen -t ed25519 -C "$email" -f "$SSH_KEY_PATH" -N "" -q
         print_success "SSH key generated"
     fi
 
@@ -460,7 +582,8 @@ if [[ "$SKIP_GITHUB" == false ]]; then
     open "https://github.com/settings/ssh/new"
 
     echo ""
-    echo -e "${YELLOW}Paste your SSH key (it's in your clipboard) and click 'Add SSH Key'${NC}"
+    echo -e "${YELLOW}Paste your SSH key ${DIM}(it's in your clipboard)${NC}${YELLOW} and click 'Add SSH Key'${NC}"
+    echo ""
     read -p "Press Enter when done..."
     echo ""
 
@@ -471,12 +594,13 @@ if [[ "$SKIP_GITHUB" == false ]]; then
     if ! check_gh_auth; then
         print_step "Authenticating GitHub CLI..."
         echo ""
-        echo "Follow the prompts to sign in."
+        echo -e "${DIM}Follow the prompts to sign in.${NC}"
         echo ""
         gh auth login
+        echo ""
         print_success "GitHub CLI authenticated"
     else
-        print_success "GitHub CLI (already authenticated)"
+        print_success "GitHub CLI ${DIM}already authenticated${NC}"
     fi
 
     echo ""
@@ -486,7 +610,7 @@ fi
 # ZSH CONFIG
 # =============================================================================
 
-echo -e "${BOLD}Configuring shell...${NC}"
+echo -e "${BOLD}Shell Configuration${NC}"
 echo ""
 
 ZSHRC="$HOME/.zshrc"
@@ -499,12 +623,15 @@ fi
 # Ensure file exists
 touch "$ZSHRC"
 
+SHELL_MODIFIED=false
+
 # Add Homebrew to path (Apple Silicon)
 if [[ $(uname -m) == "arm64" ]]; then
     if ! grep -q '/opt/homebrew/bin/brew shellenv' "$ZSHRC"; then
         echo '' >> "$ZSHRC"
         echo '# Homebrew' >> "$ZSHRC"
         echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> "$ZSHRC"
+        SHELL_MODIFIED=true
     fi
 fi
 
@@ -513,6 +640,7 @@ if ! grep -q 'starship init zsh' "$ZSHRC"; then
     echo '' >> "$ZSHRC"
     echo '# Starship prompt' >> "$ZSHRC"
     echo 'eval "$(starship init zsh)"' >> "$ZSHRC"
+    SHELL_MODIFIED=true
 fi
 
 # Add aliases
@@ -533,15 +661,20 @@ alias cat="bat --paging=never"
 alias ..="cd .."
 alias ...="cd ../.."
 EOF
+    SHELL_MODIFIED=true
 fi
 
-print_success "Shell configured"
+if [[ "$SHELL_MODIFIED" == true ]]; then
+    print_success "Shell configured"
+else
+    print_success "Shell ${DIM}already configured${NC}"
+fi
 
 # Check if zsh is default shell
 if [[ "$SHELL" != *"zsh"* ]]; then
     echo ""
-    print_warning "Your default shell is not zsh. Some features may not work."
-    print_warning "Run 'chsh -s /bin/zsh' to change your default shell."
+    print_warning "Your default shell is not zsh"
+    echo -e "  ${DIM}Run 'chsh -s /bin/zsh' to change it${NC}"
 fi
 
 # Source zshrc
@@ -553,28 +686,32 @@ echo ""
 # DONE
 # =============================================================================
 
-echo -e "${GREEN}${BOLD}Installation complete!${NC}"
+divider
 echo ""
-echo "Installed:"
-echo "  • Ghostty, GitHub Desktop"
-echo "  • git, gh, node, bun, claude"
-echo "  • starship, jq, fzf, ripgrep, eza, bat"
+echo -e "${GREEN}${BOLD}Installation complete!${NC} ${SPARKLE}"
+echo ""
+echo -e "${DIM}Installed:${NC}"
+print_item "Ghostty, GitHub Desktop"
+print_item "git, gh, node, bun, claude"
+print_item "starship, jq, fzf, ripgrep, eza, bat"
+echo ""
+divider
 echo ""
 
 if ask_yes_no "Open Ghostty to see your new setup?"; then
     echo ""
-    print_step "Opening Ghostty..."
+    print_step "Launching Ghostty..."
     open "${REPO_URL}/next-steps.html"
-    sleep 1
+    sleep 0.5
     open -a Ghostty
     echo ""
-    echo "Welcome to your new terminal!"
+    echo -e "${BOLD}Welcome to your new terminal!${NC}"
 else
     echo ""
-    echo "Run 'open -a Ghostty' when you're ready."
+    echo -e "${DIM}Run${NC} open -a Ghostty ${DIM}when you're ready.${NC}"
     open "${REPO_URL}/next-steps.html"
 fi
 
 echo ""
-echo -e "Happy vibecoding!"
+echo -e "Happy vibecoding! ${SPARKLE}"
 echo ""
