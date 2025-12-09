@@ -550,32 +550,70 @@ print_success "Context7 MCP configured"
 
 echo ""
 
-# Miro Design System MCP
-echo -e "${BOLD}Miro Design System MCP${NC}"
+# MCP Server Configuration
+echo -e "${BOLD}MCP Server Configuration${NC}"
 echo ""
-echo -e "${DIM}Get your token at:${NC} ${BLUE}https://miro.design/mcp/token${NC}"
+
+CLAUDE_CONFIG="$HOME/.claude.json"
+MCP_SERVERS=""
+
+# Figma MCP
+if ask_yes_no "Configure Figma MCP?"; then
+    MCP_SERVERS="figma"
+fi
+
+echo ""
+
+# Miro Design System MCP
+echo -e "${DIM}Get your Miro DS token at:${NC} ${BLUE}https://miro.design/mcp/token${NC}"
 echo ""
 open "https://miro.design/mcp/token" 2>/dev/null || true
 
 echo -e -n "Paste your Miro DS token ${DIM}(or press Enter to skip):${NC} "
 read -r MIRO_DS_TOKEN
 
+MIRO_EMAIL=""
 if [[ -n "$MIRO_DS_TOKEN" ]]; then
     echo -e -n "Enter your Miro email: "
     read -r MIRO_EMAIL
+    MCP_SERVERS="${MCP_SERVERS} miro"
+fi
 
-    # Create or update ~/.claude.json
-    CLAUDE_CONFIG="$HOME/.claude.json"
+echo ""
 
+# Write MCP config
+if [[ -n "$MCP_SERVERS" ]]; then
     if [[ -f "$CLAUDE_CONFIG" ]]; then
-        # Backup existing config
         cp "$CLAUDE_CONFIG" "${CLAUDE_CONFIG}.backup"
     fi
 
-    # Write the MCP config
-    cat > "$CLAUDE_CONFIG" << EOF
-{
-  "mcpServers": {
+    # Build the JSON config
+    echo "{" > "$CLAUDE_CONFIG"
+    echo '  "mcpServers": {' >> "$CLAUDE_CONFIG"
+
+    FIRST=true
+
+    # Add Figma if selected
+    if [[ "$MCP_SERVERS" == *"figma"* ]]; then
+        if [[ "$FIRST" == false ]]; then
+            echo "," >> "$CLAUDE_CONFIG"
+        fi
+        FIRST=false
+        cat >> "$CLAUDE_CONFIG" << 'EOF'
+    "figma": {
+      "type": "http",
+      "url": "https://mcp.figma.com/mcp"
+    }
+EOF
+    fi
+
+    # Add Miro DS if token provided
+    if [[ "$MCP_SERVERS" == *"miro"* ]]; then
+        if [[ "$FIRST" == false ]]; then
+            # Add comma to previous entry
+            sed -i '' '$ s/}$/},/' "$CLAUDE_CONFIG"
+        fi
+        cat >> "$CLAUDE_CONFIG" << EOF
     "miro-design-system": {
       "type": "http",
       "url": "https://miro.design/api/mcp",
@@ -584,16 +622,16 @@ if [[ -n "$MIRO_DS_TOKEN" ]]; then
         "X-User-Email": "${MIRO_EMAIL}"
       }
     }
-  }
-}
 EOF
-    print_success "Miro DS MCP configured"
-else
-    echo -e "${DIM}Skipped. You can configure it later in ~/.claude.json${NC}"
-fi
+    fi
 
-echo ""
-echo -e "${DIM}Note: Add Figma MCP manually if needed:${NC} ${BLUE}mcp.figma.com${NC}"
+    echo "  }" >> "$CLAUDE_CONFIG"
+    echo "}" >> "$CLAUDE_CONFIG"
+
+    print_success "MCP servers configured"
+else
+    echo -e "${DIM}No MCP servers configured. You can add them later in ~/.claude.json${NC}"
+fi
 
 echo ""
 
