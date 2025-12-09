@@ -719,19 +719,12 @@ echo ""
 divider
 echo ""
 
-if ask_yes_no "Open Ghostty to see your new setup?"; then
-    echo ""
-    print_step "Launching Ghostty..."
-    open "${REPO_URL}/next-steps.html"
-    sleep 0.5
-    open -a Ghostty
-    echo ""
-    echo -e "${BOLD}Welcome to your new terminal!${NC}"
-else
-    echo ""
-    echo -e "${DIM}Run${NC} open -a Ghostty ${DIM}when you're ready.${NC}"
-    open "${REPO_URL}/next-steps.html"
-fi
+print_step "Launching Ghostty..."
+open "${REPO_URL}/next-steps.html"
+sleep 0.5
+open -a Ghostty
+echo ""
+echo -e "${BOLD}Welcome to your new terminal!${NC}"
 
 echo ""
 echo -e "Happy vibecoding! ${SPARKLE}"
