@@ -180,12 +180,9 @@ check_starship_config() {
     [[ -f "$HOME/.config/starship.toml" ]]
 }
 
-check_zshrc_starship() {
+check_zshrc_configured() {
+    # Check if starship is configured (the essential part)
     [[ -f "$HOME/.zshrc" ]] && grep -q 'starship init zsh' "$HOME/.zshrc"
-}
-
-check_zshrc_aliases() {
-    [[ -f "$HOME/.zshrc" ]] && grep -q '# Vibecode aliases' "$HOME/.zshrc"
 }
 
 # =============================================================================
@@ -318,7 +315,7 @@ else
 fi
 
 TOTAL_COUNT=$((TOTAL_COUNT + 1))
-if check_zshrc_starship && check_zshrc_aliases; then
+if check_zshrc_configured; then
     print_installed "Shell configuration"
     INSTALLED_COUNT=$((INSTALLED_COUNT + 1))
 else
