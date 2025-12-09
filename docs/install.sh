@@ -548,6 +548,8 @@ print_step "Configuring Claude Code MCP servers..."
 claude mcp add context7 -- npx -y @upstash/context7-mcp@latest 2>/dev/null || true
 claude mcp add figma -- npx -y figma-developer-mcp --figma-api-key=YOUR_FIGMA_TOKEN --stdio 2>/dev/null || true
 print_success "Claude Code MCP servers"
+echo ""
+echo -e "${DIM}Note: Configure Miro Design System MCP at${NC} ${BLUE}miro.design/mcp/token${NC}"
 
 echo ""
 

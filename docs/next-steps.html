@@ -195,7 +195,25 @@
         .info-box-desc a:hover {
             text-decoration: underline;
         }
-        
+
+        /* Code block */
+        .code-block {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-top: 16px;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin: 0;
+            white-space: pre;
+        }
+
         /* Aliases */
         .alias-card {
             background: var(--bg-subtle);
@@ -297,9 +315,11 @@
             flex-shrink: 0;
         }
 
-        .editor-icon svg {
+        .editor-icon svg,
+        .editor-icon img {
             width: 100%;
             height: 100%;
+            object-fit: contain;
         }
 
         .editor-name {
@@ -354,11 +374,7 @@
                 <div class="editors-grid">
                     <a href="https://cursor.com" target="_blank" class="editor-card">
                         <div class="editor-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H11M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125" />
-                                <path d="M17 15L14 18L17 21" />
-                                <path d="M20 15L23 18L20 21" />
-                            </svg>
+                            <img src="cursor.svg" alt="Cursor">
                         </div>
                         <div class="editor-info">
                             <div class="editor-name">Cursor</div>
@@ -367,11 +383,7 @@
                     </a>
                     <a href="https://code.visualstudio.com" target="_blank" class="editor-card">
                         <div class="editor-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#007acc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="m3 17 6-6-6-6" />
-                                <path d="M21 5v14" />
-                                <path d="M12 19H3" />
-                            </svg>
+                            <img src="vscode.svg" alt="VS Code">
                         </div>
                         <div class="editor-info">
                             <div class="editor-name">VS Code</div>
@@ -380,10 +392,7 @@
                     </a>
                     <a href="https://antigravity.google/" target="_blank" class="editor-card">
                         <div class="editor-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#4285f4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10" />
-                                <path d="M12 6v6l4 2" />
-                            </svg>
+                            <img src="antigravity.svg" alt="Antigravity">
                         </div>
                         <div class="editor-info">
                             <div class="editor-name">Antigravity</div>
@@ -392,9 +401,7 @@
                     </a>
                     <a href="https://zed.dev" target="_blank" class="editor-card">
                         <div class="editor-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#084ccf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-                            </svg>
+                            <img src="zed.svg" alt="Zed">
                         </div>
                         <div class="editor-info">
                             <div class="editor-name">Zed</div>
@@ -468,13 +475,27 @@
                 <p class="section-label">Miro Design System</p>
                 <div class="info-boxes">
                     <div class="info-box">
-                        <div class="info-box-title">Mirotone</div>
-                        <div class="info-box-desc">Miro's UI kit for building apps. Install with <code>npm i mirotone</code> — <a href="https://www.mirotone.xyz" target="_blank">mirotone.xyz</a></div>
-                    </div>
-                    <div class="info-box">
                         <div class="info-box-title">Miro Design</div>
                         <div class="info-box-desc">Full design system documentation at <a href="https://miro.design" target="_blank">miro.design</a></div>
                     </div>
+                    <div class="info-box">
+                        <div class="info-box-title">Miro DS MCP Server</div>
+                        <div class="info-box-desc">Get your access token at <a href="https://miro.design/mcp/token" target="_blank">miro.design/mcp/token</a>, then add to <code>~/.claude.json</code>:</div>
+                    </div>
+                </div>
+                <div class="code-block">
+<pre>{
+  "mcpServers": {
+    "miro-design-system": {
+      "type": "http",
+      "url": "https://miro.design/api/mcp",
+      "headers": {
+        "Authorization": "Bearer YOUR_TOKEN",
+        "X-User-Email": "your@miro.com"
+      }
+    }
+  }
+}</pre>
                 </div>
             </div>
         </section>
