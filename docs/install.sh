@@ -769,6 +769,7 @@ alias gcm="git commit -m"
 alias gaa="git add -A"
 alias ll="eza -la --git"
 alias cat="bat --paging=never"
+alias grep="rg"
 alias ..="cd .."
 alias ...="cd ../.."
 EOF

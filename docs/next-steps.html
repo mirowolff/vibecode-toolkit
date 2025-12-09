@@ -1,364 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Setup Complete — Vibecode Toolkit</title>
+    <meta name="description"
+        content="Your Mac is set up for vibecoding. Next steps to get the most out of your development environment.">
+
+    <!-- Favicon - Lucide Terminal icon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fbcc17' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='4 17 10 11 4 5'/><line x1='12' x2='20' y1='19' y2='19'/></svg>">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Setup Complete — Vibecode Toolkit">
+    <meta property="og:description"
+        content="Your Mac is set up for vibecoding. Next steps to get the most out of your development environment.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mirowolff.github.io/vibecode-toolkit/next-steps.html">
+    <meta property="og:image" content="https://mirowolff.github.io/vibecode-toolkit/og-image.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Setup Complete — Vibecode Toolkit">
+    <meta name="twitter:description" content="Your Mac is set up for vibecoding. Next steps to get the most out of your development environment.">
+    <meta name="twitter:image" content="https://mirowolff.github.io/vibecode-toolkit/og-image.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        :root {
-            --bg: #0a0a0b;
-            --bg-subtle: #141416;
-            --bg-muted: #1c1c1f;
-            --border: #2a2a2e;
-            --border-light: #3a3a3f;
-            --text: #f4f4f5;
-            --text-muted: #9898a0;
-            --text-dim: #6b6b73;
-            --accent: #8b5cf6;
-            --accent-light: #a78bfa;
-            --green: #22c55e;
-            --blue: #3b82f6;
-        }
-        
-        body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-        
-        .ambient {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: -1;
-        }
-        
-        .ambient::before {
-            content: '';
-            position: absolute;
-            top: -30%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120%;
-            height: 80%;
-            background: radial-gradient(ellipse at center, rgba(34, 197, 94, 0.06) 0%, transparent 50%);
-        }
-        
-        .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-        
-        header { padding: 20px 0; }
-        
-        .logo {
-            font-size: 15px;
-            font-weight: 600;
-            color: var(--text-muted);
-            text-decoration: none;
-        }
-        
-        .logo:hover { color: var(--text); }
-        
-        /* Success */
-        .success {
-            text-align: center;
-            padding: 80px 0 50px;
-        }
-        
-        .success-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(34, 197, 94, 0.05));
-            border: 1px solid rgba(34, 197, 94, 0.25);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 24px;
-            font-size: 36px;
-        }
-        
-        h1 {
-            font-size: 40px;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 12px;
-        }
-        
-        .success p {
-            color: var(--text-muted);
-            font-size: 17px;
-        }
-        
-        /* Sections */
-        .section {
-            padding: 48px 0;
-        }
-        
-        .section-label {
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--accent-light);
-            margin-bottom: 20px;
-        }
-        
-        /* Steps */
-        .steps { display: flex; flex-direction: column; gap: 12px; }
-        
-        .step {
-            background: var(--bg-subtle);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 20px 24px;
-            display: flex;
-            gap: 16px;
-        }
-        
-        .step-num {
-            width: 28px;
-            height: 28px;
-            background: var(--bg-muted);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 13px;
-            font-weight: 600;
-            flex-shrink: 0;
-        }
-        
-        .step-content { flex: 1; }
-        
-        .step-title {
-            font-size: 15px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-        
-        .step-desc {
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-        
-        .step-desc code {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 13px;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            padding: 2px 8px;
-            border-radius: 6px;
-        }
-        
-        /* Info boxes */
-        .info-boxes { display: flex; flex-direction: column; gap: 12px; }
-        
-        .info-box {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(59, 130, 246, 0.02));
-            border: 1px solid rgba(59, 130, 246, 0.2);
-            border-radius: 14px;
-            padding: 20px 24px;
-        }
-        
-        .info-box-title {
-            font-size: 15px;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-        
-        .info-box-desc {
-            font-size: 14px;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-        
-        .info-box-desc code {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 13px;
-            background: var(--bg);
-            padding: 2px 6px;
-            border-radius: 4px;
-        }
-
-        .info-box-desc a {
-            color: var(--blue);
-            text-decoration: none;
-        }
-
-        .info-box-desc a:hover {
-            text-decoration: underline;
-        }
-
-        /* Code block */
-        .code-block {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 16px 20px;
-            margin-top: 16px;
-            overflow-x: auto;
-        }
-
-        .code-block pre {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 13px;
-            color: var(--text-muted);
-            margin: 0;
-            white-space: pre;
-        }
-
-        /* Aliases */
-        .alias-card {
-            background: var(--bg-subtle);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            overflow: hidden;
-        }
-        
-        .alias-row {
-            display: flex;
-            padding: 12px 20px;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .alias-row:last-child { border-bottom: none; }
-        
-        .alias-key {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 14px;
-            font-weight: 500;
-            width: 80px;
-            color: var(--green);
-        }
-        
-        .alias-val {
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-        
-        /* Resources */
-        .resources {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-        
-        @media (max-width: 500px) {
-            .resources { grid-template-columns: 1fr; }
-        }
-        
-        .resource {
-            background: var(--bg-subtle);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 18px 20px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.15s;
-        }
-        
-        .resource:hover {
-            border-color: var(--border-light);
-            transform: translateY(-1px);
-        }
-        
-        .resource-title {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-        
-        .resource-desc {
-            font-size: 13px;
-            color: var(--text-dim);
-        }
-
-        /* Editors */
-        .editors-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-
-        @media (max-width: 500px) {
-            .editors-grid { grid-template-columns: 1fr; }
-        }
-
-        .editor-card {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 18px 20px;
-            background: var(--bg-subtle);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.15s;
-        }
-
-        .editor-card:hover {
-            border-color: var(--border-light);
-            transform: translateY(-1px);
-        }
-
-        .editor-icon {
-            width: 32px;
-            height: 32px;
-            flex-shrink: 0;
-        }
-
-        .editor-icon svg,
-        .editor-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .editor-name {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 2px;
-        }
-
-        .editor-desc {
-            font-size: 13px;
-            color: var(--text-dim);
-        }
-
-        /* Footer */
-        footer {
-            padding: 32px 0;
-            border-top: 1px solid var(--border);
-            margin-top: 40px;
-            text-align: center;
-        }
-        
-        footer a {
-            font-size: 14px;
-            color: var(--text-dim);
-            text-decoration: none;
-        }
-        
-        footer a:hover { color: var(--text-muted); }
-    </style>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+
+<body class="next-steps-page">
     <div class="ambient"></div>
-    
+
     <header>
         <div class="container">
-            <a href="/" class="logo">← vibecode toolkit</a>
+            <div class="header-inner">
+                <a href="/" class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="4 17 10 11 4 5" />
+                        <line x1="12" x2="20" y1="19" y2="19" />
+                    </svg>
+                    vibecode toolkit
+                </a>
+                <div class="header-right">
+                    <span class="version-badge">v1.0</span>
+                    <a href="https://github.com/mirowolff/vibecode-toolkit" target="_blank" class="header-github">
+                        <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
         </div>
     </header>
-    
+
     <main>
         <section class="success">
             <div class="container">
@@ -367,14 +68,14 @@
                 <p>A few more things to get the most out of your setup.</p>
             </div>
         </section>
-        
+
         <section class="section">
             <div class="container">
                 <p class="section-label">Code editors</p>
                 <div class="editors-grid">
                     <a href="https://cursor.com" target="_blank" class="editor-card">
                         <div class="editor-icon">
-                            <img src="cursor.svg" alt="Cursor">
+                            <img src="img/cursor.svg" alt="Cursor">
                         </div>
                         <div class="editor-info">
                             <div class="editor-name">Cursor</div>
@@ -383,7 +84,7 @@
                     </a>
                     <a href="https://code.visualstudio.com" target="_blank" class="editor-card">
                         <div class="editor-icon">
-                            <img src="vscode.svg" alt="VS Code">
+                            <img src="img/vscode.svg" alt="VS Code">
                         </div>
                         <div class="editor-info">
                             <div class="editor-name">VS Code</div>
@@ -392,7 +93,7 @@
                     </a>
                     <a href="https://antigravity.google/" target="_blank" class="editor-card">
                         <div class="editor-icon">
-                            <img src="antigravity.svg" alt="Antigravity">
+                            <img src="img/antigravity.svg" alt="Antigravity">
                         </div>
                         <div class="editor-info">
                             <div class="editor-name">Antigravity</div>
@@ -401,7 +102,7 @@
                     </a>
                     <a href="https://zed.dev" target="_blank" class="editor-card">
                         <div class="editor-icon">
-                            <img src="zed.svg" alt="Zed">
+                            <img src="img/zed.svg" alt="Zed">
                         </div>
                         <div class="editor-info">
                             <div class="editor-name">Zed</div>
@@ -420,39 +121,49 @@
                         <div class="step-num">1</div>
                         <div class="step-content">
                             <div class="step-title">Set Ghostty as your default terminal</div>
-                            <div class="step-desc">System Settings → Desktop & Dock → scroll to bottom → Default terminal application → Ghostty</div>
+                            <div class="step-desc">System Settings → Desktop & Dock → scroll to bottom → Default
+                                terminal application → Ghostty</div>
                         </div>
                     </div>
                     <div class="step">
                         <div class="step-num">2</div>
                         <div class="step-content">
                             <div class="step-title">Open Ghostty</div>
-                            <div class="step-desc">Find it in Applications or use Spotlight (⌘ + Space, type "Ghostty")</div>
+                            <div class="step-desc">Find it in Applications or use Spotlight (⌘ + Space, type "Ghostty")
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <section class="section">
             <div class="container">
                 <p class="section-label">Miro access</p>
                 <div class="info-boxes">
                     <div class="info-box">
                         <div class="info-box-title">Check your access</div>
-                        <div class="info-box-desc">Visit <a href="https://miro.okta.com" target="_blank">miro.okta.com</a> to see if you have access to Claude, Cursor, and other tools.</div>
+                        <div class="info-box-desc">Visit <a href="https://miro.okta.com"
+                                target="_blank">miro.okta.com</a> to see if you have access to Claude, Cursor, and other
+                            tools.</div>
                     </div>
                     <div class="info-box">
                         <div class="info-box-title">First-time login</div>
-                        <div class="info-box-desc">Log into <strong>Claude</strong> and <strong>Cursor</strong> via Okta the first time to activate your access.</div>
+                        <div class="info-box-desc">Log into <strong>Claude</strong> and <strong>Cursor</strong> via Okta
+                            the first time to activate your access.</div>
                     </div>
                     <div class="info-box">
                         <div class="info-box-title">GitHub Organization (miroapp-dev)</div>
-                        <div class="info-box-desc">To work with Miro's codebase, you need access to the <code>miroapp-dev</code> org. <a href="https://miro.atlassian.net/servicedesk/customer/portal/34/group/121/create/655" target="_blank">Request access here</a>.</div>
+                        <div class="info-box-desc">To work with Miro's codebase, you need access to the
+                            <code>miroapp-dev</code> org. <a
+                                href="https://miro.atlassian.net/servicedesk/customer/portal/34/group/121/create/655"
+                                target="_blank">Request access here</a>.
+                        </div>
                     </div>
                     <div class="info-box">
                         <div class="info-box-title">Need access?</div>
-                        <div class="info-box-desc">Submit a ticket via <a href="https://miro.atlassian.net/servicedesk" target="_blank">JSM Service Desk</a> to request access to any tools.</div>
+                        <div class="info-box-desc">Submit a ticket via <a href="https://miro.atlassian.net/servicedesk"
+                                target="_blank">JSM Service Desk</a> to request access to any tools.</div>
                     </div>
                 </div>
             </div>
@@ -463,141 +174,358 @@
                 <p class="section-label">MCP Servers (configured)</p>
                 <div class="info-boxes">
                     <div class="info-box">
-                        <div class="info-box-title">Context7</div>
-                        <div class="info-box-desc">Up-to-date documentation for any library. Use <code>use context7</code> in your prompts to fetch current docs.</div>
+                        <div class="info-box-header">
+                            <div class="info-box-icon"><img src="img/context7.svg" alt="Context7"></div>
+                            <div class="info-box-title">Context7</div>
+                        </div>
+                        <div class="info-box-desc">Up-to-date documentation for any library. Use
+                            <code>use context7</code> in your prompts to fetch current docs.
+                        </div>
                     </div>
                     <div class="info-box">
-                        <div class="info-box-title">Figma MCP</div>
-                        <div class="info-box-desc">Access Figma designs directly in Claude. Pull in variables, components, and layout data.</div>
+                        <div class="info-box-header">
+                            <div class="info-box-icon"><img src="img/figma.svg" alt="Figma"></div>
+                            <div class="info-box-title">Figma MCP</div>
+                        </div>
+                        <div class="info-box-desc">Access Figma designs directly in Claude. Pull in variables,
+                            components, and layout data.</div>
                     </div>
                     <div class="info-box">
-                        <div class="info-box-title">Miro Design System</div>
-                        <div class="info-box-desc">Miro's design system context in Claude. Documentation at <a href="https://miro.design" target="_blank">miro.design</a></div>
+                        <div class="info-box-header">
+                            <div class="info-box-icon"><img src="img/miro.svg" alt="Miro"></div>
+                            <div class="info-box-title">Miro Design System</div>
+                        </div>
+                        <div class="info-box-desc">Miro's design system context in Claude. Documentation at <a
+                                href="https://miro.design" target="_blank">miro.design</a></div>
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <section class="section">
             <div class="container">
                 <p class="section-label">Aliases cheatsheet</p>
                 <div class="alias-card">
-                    <div class="alias-row"><div class="alias-key">c</div><div class="alias-val">claude</div></div>
-                    <div class="alias-row"><div class="alias-key">gs</div><div class="alias-val">git status</div></div>
-                    <div class="alias-row"><div class="alias-key">gp</div><div class="alias-val">git push</div></div>
-                    <div class="alias-row"><div class="alias-key">gl</div><div class="alias-val">git pull</div></div>
-                    <div class="alias-row"><div class="alias-key">gco</div><div class="alias-val">git checkout</div></div>
-                    <div class="alias-row"><div class="alias-key">gcm</div><div class="alias-val">git commit -m "message"</div></div>
-                    <div class="alias-row"><div class="alias-key">gaa</div><div class="alias-val">git add -A</div></div>
-                    <div class="alias-row"><div class="alias-key">ll</div><div class="alias-val">list files with git status</div></div>
-                    <div class="alias-row"><div class="alias-key">cat</div><div class="alias-val">view file with syntax highlighting</div></div>
-                    <div class="alias-row"><div class="alias-key">..</div><div class="alias-val">cd ..</div></div>
+                    <div class="alias-row">
+                        <div class="alias-key">c</div>
+                        <div class="alias-val">claude</div>
+                    </div>
+                    <div class="alias-row">
+                        <div class="alias-key">gs</div>
+                        <div class="alias-val">git status</div>
+                    </div>
+                    <div class="alias-row">
+                        <div class="alias-key">gp</div>
+                        <div class="alias-val">git push</div>
+                    </div>
+                    <div class="alias-row">
+                        <div class="alias-key">gl</div>
+                        <div class="alias-val">git pull</div>
+                    </div>
+                    <div class="alias-row">
+                        <div class="alias-key">gco</div>
+                        <div class="alias-val">git checkout</div>
+                    </div>
+                    <div class="alias-row">
+                        <div class="alias-key">gcm</div>
+                        <div class="alias-val">git commit -m "message"</div>
+                    </div>
+                    <div class="alias-row">
+                        <div class="alias-key">gaa</div>
+                        <div class="alias-val">git add -A</div>
+                    </div>
+                    <div class="alias-row">
+                        <div class="alias-key">ll</div>
+                        <div class="alias-val">list files with git status</div>
+                    </div>
+                    <div class="alias-row">
+                        <div class="alias-key">cat</div>
+                        <div class="alias-val">view file with syntax highlighting</div>
+                    </div>
+                    <div class="alias-row">
+                        <div class="alias-key">..</div>
+                        <div class="alias-val">cd ..</div>
+                    </div>
                 </div>
             </div>
         </section>
-        
+
         <section class="section">
             <div class="container">
                 <p class="section-label">Customize</p>
                 <div class="steps">
                     <div class="step">
-                        <div class="step-num">•</div>
+                        <div class="step-num">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="#6b6b73" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M20 7h-9" />
+                                <path d="M14 17H5" />
+                                <circle cx="17" cy="17" r="3" />
+                                <circle cx="7" cy="7" r="3" />
+                            </svg>
+                        </div>
                         <div class="step-content">
                             <div class="step-title">Ghostty config</div>
-                            <div class="step-desc">Edit <code>~/.config/ghostty/config</code> — change theme, font size, colors</div>
+                            <div class="step-desc">Edit <code>~/.config/ghostty/config</code> — change theme, font size,
+                                colors</div>
                         </div>
                     </div>
                     <div class="step">
-                        <div class="step-num">•</div>
+                        <div class="step-num">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="#6b6b73" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M20 7h-9" />
+                                <path d="M14 17H5" />
+                                <circle cx="17" cy="17" r="3" />
+                                <circle cx="7" cy="7" r="3" />
+                            </svg>
+                        </div>
                         <div class="step-content">
                             <div class="step-title">Starship prompt</div>
-                            <div class="step-desc">Edit <code>~/.config/starship.toml</code> — customize what shows in your prompt</div>
+                            <div class="step-desc">Edit <code>~/.config/starship.toml</code> — customize what shows in
+                                your prompt</div>
                         </div>
                     </div>
                     <div class="step">
-                        <div class="step-num">•</div>
+                        <div class="step-num">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="#6b6b73" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M20 7h-9" />
+                                <path d="M14 17H5" />
+                                <circle cx="17" cy="17" r="3" />
+                                <circle cx="7" cy="7" r="3" />
+                            </svg>
+                        </div>
                         <div class="step-content">
                             <div class="step-title">Add your own aliases</div>
-                            <div class="step-desc">Edit <code>~/.zshrc</code> — add shortcuts for commands you use often</div>
+                            <div class="step-desc">Edit <code>~/.zshrc</code> — add shortcuts for commands you use often
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <section class="section">
             <div class="container">
                 <p class="section-label">Documentation</p>
                 <div class="resources">
                     <a href="https://docs.anthropic.com/en/docs/claude-code" class="resource" target="_blank">
-                        <div class="resource-title">Claude Code</div>
-                        <div class="resource-desc">Commands, workflows, tips</div>
+                        <div class="resource-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 21V7" />
+                            <path d="m16 12 2 2 4-4" />
+                            <path
+                                d="M22 6V4a1 1 0 0 0-1-1h-5a4 4 0 0 0-4 4 4 4 0 0 0-4-4H3a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h6a3 3 0 0 1 3 3 3 3 0 0 1 3-3h6a1 1 0 0 0 1-1v-1.3" />
+                        </svg></div><div>
+                            <div class="resource-title">Claude Code</div>
+                            <div class="resource-desc">Commands, workflows, tips</div>
+                        </div>
                     </a>
                     <a href="https://ghostty.org/docs" class="resource" target="_blank">
-                        <div class="resource-title">Ghostty</div>
-                        <div class="resource-desc">Configuration, keybindings</div>
+                        <div class="resource-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 21V7" />
+                            <path d="m16 12 2 2 4-4" />
+                            <path
+                                d="M22 6V4a1 1 0 0 0-1-1h-5a4 4 0 0 0-4 4 4 4 0 0 0-4-4H3a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h6a3 3 0 0 1 3 3 3 3 0 0 1 3-3h6a1 1 0 0 0 1-1v-1.3" />
+                        </svg></div><div>
+                            <div class="resource-title">Ghostty</div>
+                            <div class="resource-desc">Configuration, keybindings</div>
+                        </div>
                     </a>
                     <a href="https://starship.rs/config/" class="resource" target="_blank">
-                        <div class="resource-title">Starship</div>
-                        <div class="resource-desc">Prompt customization</div>
+                        <div class="resource-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 21V7" />
+                            <path d="m16 12 2 2 4-4" />
+                            <path
+                                d="M22 6V4a1 1 0 0 0-1-1h-5a4 4 0 0 0-4 4 4 4 0 0 0-4-4H3a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h6a3 3 0 0 1 3 3 3 3 0 0 1 3-3h6a1 1 0 0 0 1-1v-1.3" />
+                        </svg></div><div>
+                            <div class="resource-title">Starship</div>
+                            <div class="resource-desc">Prompt customization</div>
+                        </div>
                     </a>
                     <a href="https://cli.github.com/manual/" class="resource" target="_blank">
-                        <div class="resource-title">GitHub CLI</div>
-                        <div class="resource-desc">gh commands reference</div>
+                        <div class="resource-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 21V7" />
+                            <path d="m16 12 2 2 4-4" />
+                            <path
+                                d="M22 6V4a1 1 0 0 0-1-1h-5a4 4 0 0 0-4 4 4 4 0 0 0-4-4H3a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h6a3 3 0 0 1 3 3 3 3 0 0 1 3-3h6a1 1 0 0 0 1-1v-1.3" />
+                        </svg></div><div>
+                            <div class="resource-title">GitHub CLI</div>
+                            <div class="resource-desc">gh commands reference</div>
+                        </div>
                     </a>
                     <a href="https://nodejs.org/en/docs/" class="resource" target="_blank">
-                        <div class="resource-title">Node.js</div>
-                        <div class="resource-desc">JavaScript runtime</div>
+                        <div class="resource-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 21V7" />
+                            <path d="m16 12 2 2 4-4" />
+                            <path
+                                d="M22 6V4a1 1 0 0 0-1-1h-5a4 4 0 0 0-4 4 4 4 0 0 0-4-4H3a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h6a3 3 0 0 1 3 3 3 3 0 0 1 3-3h6a1 1 0 0 0 1-1v-1.3" />
+                        </svg></div><div>
+                            <div class="resource-title">Node.js</div>
+                            <div class="resource-desc">JavaScript runtime</div>
+                        </div>
                     </a>
                     <a href="https://bun.sh/docs" class="resource" target="_blank">
-                        <div class="resource-title">Bun</div>
-                        <div class="resource-desc">Fast JS runtime & bundler</div>
+                        <div class="resource-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 21V7" />
+                            <path d="m16 12 2 2 4-4" />
+                            <path
+                                d="M22 6V4a1 1 0 0 0-1-1h-5a4 4 0 0 0-4 4 4 4 0 0 0-4-4H3a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h6a3 3 0 0 1 3 3 3 3 0 0 1 3-3h6a1 1 0 0 0 1-1v-1.3" />
+                        </svg></div><div>
+                            <div class="resource-title">Bun</div>
+                            <div class="resource-desc">Fast JS runtime & bundler</div>
+                        </div>
                     </a>
-                    <a href="https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md" class="resource" target="_blank">
-                        <div class="resource-title">ripgrep</div>
-                        <div class="resource-desc">Fast code search</div>
+                    <a href="https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md" class="resource"
+                        target="_blank">
+                        <div class="resource-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 21V7" />
+                            <path d="m16 12 2 2 4-4" />
+                            <path
+                                d="M22 6V4a1 1 0 0 0-1-1h-5a4 4 0 0 0-4 4 4 4 0 0 0-4-4H3a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h6a3 3 0 0 1 3 3 3 3 0 0 1 3-3h6a1 1 0 0 0 1-1v-1.3" />
+                        </svg></div><div>
+                            <div class="resource-title">ripgrep</div>
+                            <div class="resource-desc">Fast code search</div>
+                        </div>
                     </a>
                     <a href="https://github.com/sharkdp/bat#readme" class="resource" target="_blank">
-                        <div class="resource-title">bat</div>
-                        <div class="resource-desc">Cat with syntax highlighting</div>
+                        <div class="resource-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 21V7" />
+                            <path d="m16 12 2 2 4-4" />
+                            <path
+                                d="M22 6V4a1 1 0 0 0-1-1h-5a4 4 0 0 0-4 4 4 4 0 0 0-4-4H3a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h6a3 3 0 0 1 3 3 3 3 0 0 1 3-3h6a1 1 0 0 0 1-1v-1.3" />
+                        </svg></div><div>
+                            <div class="resource-title">bat</div>
+                            <div class="resource-desc">Cat with syntax highlighting</div>
+                        </div>
                     </a>
                     <a href="https://github.com/eza-community/eza#readme" class="resource" target="_blank">
-                        <div class="resource-title">eza</div>
-                        <div class="resource-desc">Modern ls replacement</div>
+                        <div class="resource-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 21V7" />
+                            <path d="m16 12 2 2 4-4" />
+                            <path
+                                d="M22 6V4a1 1 0 0 0-1-1h-5a4 4 0 0 0-4 4 4 4 0 0 0-4-4H3a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h6a3 3 0 0 1 3 3 3 3 0 0 1 3-3h6a1 1 0 0 0 1-1v-1.3" />
+                        </svg></div><div>
+                            <div class="resource-title">eza</div>
+                            <div class="resource-desc">Modern ls replacement</div>
+                        </div>
                     </a>
                     <a href="https://github.com/junegunn/fzf#readme" class="resource" target="_blank">
-                        <div class="resource-title">fzf</div>
-                        <div class="resource-desc">Fuzzy finder</div>
+                        <div class="resource-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 21V7" />
+                            <path d="m16 12 2 2 4-4" />
+                            <path
+                                d="M22 6V4a1 1 0 0 0-1-1h-5a4 4 0 0 0-4 4 4 4 0 0 0-4-4H3a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h6a3 3 0 0 1 3 3 3 3 0 0 1 3-3h6a1 1 0 0 0 1-1v-1.3" />
+                        </svg></div><div>
+                            <div class="resource-title">fzf</div>
+                            <div class="resource-desc">Fuzzy finder</div>
+                        </div>
                     </a>
                     <a href="https://jqlang.github.io/jq/manual/" class="resource" target="_blank">
-                        <div class="resource-title">jq</div>
-                        <div class="resource-desc">JSON processor</div>
+                        <div class="resource-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 21V7" />
+                            <path d="m16 12 2 2 4-4" />
+                            <path
+                                d="M22 6V4a1 1 0 0 0-1-1h-5a4 4 0 0 0-4 4 4 4 0 0 0-4-4H3a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h6a3 3 0 0 1 3 3 3 3 0 0 1 3-3h6a1 1 0 0 0 1-1v-1.3" />
+                        </svg></div><div>
+                            <div class="resource-title">jq</div>
+                            <div class="resource-desc">JSON processor</div>
+                        </div>
                     </a>
                     <a href="https://desktop.github.com/" class="resource" target="_blank">
-                        <div class="resource-title">GitHub Desktop</div>
-                        <div class="resource-desc">Visual Git interface</div>
+                        <div class="resource-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 21V7" />
+                            <path d="m16 12 2 2 4-4" />
+                            <path
+                                d="M22 6V4a1 1 0 0 0-1-1h-5a4 4 0 0 0-4 4 4 4 0 0 0-4-4H3a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h6a3 3 0 0 1 3 3 3 3 0 0 1 3-3h6a1 1 0 0 0 1-1v-1.3" />
+                        </svg></div><div>
+                            <div class="resource-title">GitHub Desktop</div>
+                            <div class="resource-desc">Visual Git interface</div>
+                        </div>
                     </a>
-                    <a href="https://help.figma.com/hc/en-us/articles/32132100833559-Guide-to-the-Figma-MCP-server" class="resource" target="_blank">
-                        <div class="resource-title">Figma MCP</div>
-                        <div class="resource-desc">Design context for AI</div>
+                    <a href="https://help.figma.com/hc/en-us/articles/32132100833559-Guide-to-the-Figma-MCP-server"
+                        class="resource" target="_blank">
+                        <div class="resource-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 21V7" />
+                            <path d="m16 12 2 2 4-4" />
+                            <path
+                                d="M22 6V4a1 1 0 0 0-1-1h-5a4 4 0 0 0-4 4 4 4 0 0 0-4-4H3a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h6a3 3 0 0 1 3 3 3 3 0 0 1 3-3h6a1 1 0 0 0 1-1v-1.3" />
+                        </svg></div><div>
+                            <div class="resource-title">Figma MCP</div>
+                            <div class="resource-desc">Design context for AI</div>
+                        </div>
                     </a>
                     <a href="https://miro.design" class="resource" target="_blank">
-                        <div class="resource-title">Miro Design</div>
-                        <div class="resource-desc">Miro design system</div>
+                        <div class="resource-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 21V7" />
+                            <path d="m16 12 2 2 4-4" />
+                            <path
+                                d="M22 6V4a1 1 0 0 0-1-1h-5a4 4 0 0 0-4 4 4 4 0 0 0-4-4H3a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h6a3 3 0 0 1 3 3 3 3 0 0 1 3-3h6a1 1 0 0 0 1-1v-1.3" />
+                        </svg></div><div>
+                            <div class="resource-title">Miro Design</div>
+                            <div class="resource-desc">Miro design system</div>
+                        </div>
                     </a>
                     <a href="https://context7.com" class="resource" target="_blank">
-                        <div class="resource-title">Context7</div>
-                        <div class="resource-desc">Up-to-date library docs</div>
+                        <div class="resource-icon"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 21V7" />
+                            <path d="m16 12 2 2 4-4" />
+                            <path
+                                d="M22 6V4a1 1 0 0 0-1-1h-5a4 4 0 0 0-4 4 4 4 0 0 0-4-4H3a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h6a3 3 0 0 1 3 3 3 3 0 0 1 3-3h6a1 1 0 0 0 1-1v-1.3" />
+                        </svg></div><div>
+                            <div class="resource-title">Context7</div>
+                            <div class="resource-desc">Up-to-date library docs</div>
+                        </div>
                     </a>
                 </div>
             </div>
         </section>
     </main>
-    
+
     <footer>
         <div class="container">
-            <a href="https://github.com/mirowolff/vibecode-toolkit" target="_blank">View on GitHub →</a>
+            <a href="#" class="back-to-top">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m18 15-6-6-6 6"/>
+                </svg>
+                Back to top
+            </a>
         </div>
     </footer>
 </body>
+
 </html>
