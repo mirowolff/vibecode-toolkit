@@ -191,6 +191,8 @@ nav {
     transition: all 0.3s ease;
     position: relative;
     margin: 0;
+    display: flex;
+    align-items: center;
 }
 
 .nav-link:hover {
@@ -208,6 +210,16 @@ nav {
 .nav-link.active {
     color: var(--text);
     background: rgba(168, 85, 247, 0.15);
+}
+
+.nav-version {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 4px 10px;
+    border-radius: 20px;
 }
 
 .mobile-menu-btn {
