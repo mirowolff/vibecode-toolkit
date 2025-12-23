@@ -252,6 +252,7 @@ nav {
         padding: 12px;
         flex-direction: row;
         flex-wrap: wrap;
+        justify-content: space-between;
         gap: 4px;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
         animation: slideDown 0.3s ease-out;
@@ -268,13 +269,11 @@ nav {
 
     .nav-link[target="_blank"] {
         width: auto;
-        margin-right: auto;
     }
 
     .nav-version {
         width: auto;
         margin-top: 8px;
-        margin-left: auto;
     }
 
     .mobile-menu-btn {
