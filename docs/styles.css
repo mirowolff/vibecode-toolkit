@@ -250,7 +250,8 @@ nav {
         border: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 16px;
         padding: 12px;
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
         gap: 4px;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
         animation: slideDown 0.3s ease-out;
@@ -260,9 +261,20 @@ nav {
         display: flex;
     }
 
-    .nav-link {
+    .nav-link:not([target="_blank"]) {
         width: 100%;
         text-align: center;
+    }
+
+    .nav-link[target="_blank"] {
+        width: auto;
+        margin-left: auto;
+    }
+
+    .nav-version {
+        width: auto;
+        margin-top: 8px;
+        margin-right: 0;
     }
 
     .mobile-menu-btn {
