@@ -268,13 +268,13 @@ nav {
 
     .nav-link[target="_blank"] {
         width: auto;
-        margin-left: auto;
+        margin-right: auto;
     }
 
     .nav-version {
         width: auto;
         margin-top: 8px;
-        margin-right: 0;
+        margin-left: auto;
     }
 
     .mobile-menu-btn {
