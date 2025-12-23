@@ -447,18 +447,22 @@ h1 {
 
 .terminal-cmd .cmd {
     color: var(--green-bright);
+    white-space: nowrap;
 }
 
 .terminal-cmd .flag {
     color: var(--orange);
+    white-space: nowrap;
 }
 
 .terminal-cmd .url {
     color: var(--blue);
+    white-space: nowrap;
 }
 
 .terminal-cmd .pipe {
     color: var(--text-muted);
+    white-space: nowrap;
 }
 
 @media (max-width: 734px) {
