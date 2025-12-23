@@ -413,7 +413,7 @@ h1 {
 @media (max-width: 734px) {
     .terminal-content {
         padding: 16px 20px;
-        gap: 0;
+        gap: 10px;
     }
 }
 
@@ -438,7 +438,11 @@ h1 {
     font-size: 15px;
     font-weight: 500;
     line-height: 1.5;
-    word-break: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+    min-width: 0;
 }
 
 .terminal-cmd .cmd {
