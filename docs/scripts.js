@@ -99,4 +99,28 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    // Collapsible sections
+    const collapsibleHeaders = document.querySelectorAll('.collapsible-header');
+
+    collapsibleHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            const section = header.parentElement;
+            const isActive = section.classList.contains('active');
+
+            // Toggle active state
+            section.classList.toggle('active');
+
+            // Update aria-expanded attribute
+            header.setAttribute('aria-expanded', !isActive);
+        });
+
+        // Keyboard support
+        header.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                header.click();
+            }
+        });
+    });
 });
