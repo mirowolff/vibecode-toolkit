@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Vibecode Toolkit</title>
+    <meta name="description" content="Frequently asked questions about Vibecode Toolkit - installation, troubleshooting, customization, and more.">
+
+    <!-- Favicon - Lucide Terminal icon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fbcc17' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='4 17 10 11 4 5'/><line x1='12' x2='20' y1='19' y2='19'/></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="ambient"></div>
+
+    <nav>
+        <div class="nav-container">
+            <div class="nav-inner">
+                <a href="index.html" class="nav-logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="4 17 10 11 4 5"/>
+                        <line x1="12" x2="20" y1="19" y2="19"/>
+                    </svg>
+                </a>
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="tools.html" class="nav-link">Tools</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="faq.html" class="nav-link active">FAQ</a>
+                    <span class="nav-version">v1.0</span>
+                    <a href="https://github.com/mirowolff/vibecode-toolkit" class="nav-link" target="_blank" aria-label="View on GitHub">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+                            <path d="M9 18c-4.51 2-5-2-7-2"/>
+                        </svg>
+                    </a>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="4" x2="20" y1="12" y2="12"/>
+                        <line x1="4" x2="20" y1="6" y2="6"/>
+                        <line x1="4" x2="20" y1="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Frequently Asked Questions</h1>
+                <p class="subtitle">Common questions about installation, usage, and troubleshooting.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="about-content">
+                    <div class="collapsible-section">
+                        <button class="collapsible-header" aria-expanded="false">
+                            <h2>What does this install on my Mac?</h2>
+                            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </button>
+                        <div class="collapsible-content">
+                            <div class="collapsible-inner">
+                                <p>The installer sets up: Homebrew (package manager), Xcode Command Line Tools, Ghostty (terminal), GitHub Desktop, Claude Code, Starship (prompt), Node.js, Bun, Git, GitHub CLI, and CLI utilities (ripgrep, fzf, eza, bat, jq). It also configures SSH keys, shell aliases, and MCP servers.</p>
+                                <p>Everything is open source and widely used in the developer community. You can uninstall any component later.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible-section">
+                        <button class="collapsible-header" aria-expanded="false">
+                            <h2>Is this safe to run?</h2>
+                            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </button>
+                        <div class="collapsible-content">
+                            <div class="collapsible-inner">
+                                <p>Yes. The script is open source and you can review it on GitHub before running. It only installs standard developer tools from trusted sources (Homebrew, official repos). It creates backups before modifying your shell configuration and asks for confirmation before major steps.</p>
+                                <p>The script requires your password for system-level installations (Homebrew, Xcode CLI Tools), which is normal for package managers.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible-section">
+                        <button class="collapsible-header" aria-expanded="false">
+                            <h2>How long does installation take?</h2>
+                            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </button>
+                        <div class="collapsible-content">
+                            <div class="collapsible-inner">
+                                <p>10-20 minutes depending on your internet speed and whether you already have some components installed. The longest part is usually downloading and installing Xcode Command Line Tools (if not already present).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible-section">
+                        <button class="collapsible-header" aria-expanded="false">
+                            <h2>What if something goes wrong during installation?</h2>
+                            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </button>
+                        <div class="collapsible-content">
+                            <div class="collapsible-inner">
+                                <p>The script creates a backup of your .zshrc file before making changes. If something fails, you can restore from the backup in your home directory (look for .zshrc.backup with a timestamp).</p>
+                                <p>Common issues: weak internet connection (restart the script), Xcode CLI Tools dialog not appearing (manually run <code>xcode-select --install</code>), permission errors (ensure you have admin access).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible-section">
+                        <button class="collapsible-header" aria-expanded="false">
+                            <h2>Can I customize what gets installed?</h2>
+                            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </button>
+                        <div class="collapsible-content">
+                            <div class="collapsible-inner">
+                                <p>The installer is designed as an opinionated all-in-one setup. However, you can fork the GitHub repo and modify the install.sh script to skip components you don't want.</p>
+                                <p>After installation, you can uninstall any tool using Homebrew: <code>brew uninstall tool-name</code></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible-section">
+                        <button class="collapsible-header" aria-expanded="false">
+                            <h2>Do I need a GitHub account?</h2>
+                            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </button>
+                        <div class="collapsible-content">
+                            <div class="collapsible-inner">
+                                <p>Not required, but highly recommended. The installer can skip GitHub setup if you don't have an account. However, version control and collaboration are core to modern development workflows.</p>
+                                <p>If you don't have a GitHub account, the installer will offer to open the signup page for you.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible-section">
+                        <button class="collapsible-header" aria-expanded="false">
+                            <h2>How do I update installed tools?</h2>
+                            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </button>
+                        <div class="collapsible-content">
+                            <div class="collapsible-inner">
+                                <p>Use Homebrew to keep everything up to date:</p>
+                                <p><code>brew update</code> — Update Homebrew itself<br>
+                                <code>brew upgrade</code> — Update all installed packages<br>
+                                <code>brew upgrade package-name</code> — Update a specific package</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible-section">
+                        <button class="collapsible-header" aria-expanded="false">
+                            <h2>Where are the configuration files?</h2>
+                            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </button>
+                        <div class="collapsible-content">
+                            <div class="collapsible-inner">
+                                <p>Shell configuration: <code>~/.zshrc</code><br>
+                                Ghostty config: <code>~/.config/ghostty/config</code><br>
+                                Starship config: <code>~/.config/starship.toml</code><br>
+                                SSH keys: <code>~/.ssh/</code><br>
+                                Claude Code config: <code>~/.claude.json</code></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible-section">
+                        <button class="collapsible-header" aria-expanded="false">
+                            <h2>Will this work on Windows or Linux?</h2>
+                            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </button>
+                        <div class="collapsible-content">
+                            <div class="collapsible-inner">
+                                <p>No, this installer is macOS-specific. It uses Homebrew and macOS-specific installation methods. The individual tools (Claude Code, Ghostty, etc.) work on other platforms, but you'd need to install them manually.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible-section">
+                        <button class="collapsible-header" aria-expanded="false">
+                            <h2>How do I uninstall everything?</h2>
+                            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </button>
+                        <div class="collapsible-content">
+                            <div class="collapsible-inner">
+                                <p>To remove individual tools: <code>brew uninstall package-name</code><br>
+                                To remove Homebrew entirely: <code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"</code></p>
+                                <p>To restore your shell config: Replace ~/.zshrc with your backup file.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible-section">
+                        <button class="collapsible-header" aria-expanded="false">
+                            <h2>I already have some of these tools. Will they conflict?</h2>
+                            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </button>
+                        <div class="collapsible-content">
+                            <div class="collapsible-inner">
+                                <p>No. The installer checks what's already installed and skips those components. If you have Homebrew, Node, Git, or other tools already, they won't be reinstalled. The script only installs what's missing.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible-section">
+                        <button class="collapsible-header" aria-expanded="false">
+                            <h2>What's the difference between this and manually installing tools?</h2>
+                            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </button>
+                        <div class="collapsible-content">
+                            <div class="collapsible-inner">
+                                <p>This saves you from making dozens of decisions and spending hours on setup. It provides working configurations for Ghostty and Starship, sets up SSH keys properly, configures useful shell aliases, and ensures everything works together.</p>
+                                <p>Manual installation means researching each tool, figuring out configurations, and troubleshooting integration issues. This eliminates that friction.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>An open source project by <a href="https://github.com/mirowolff" target="_blank">Mauricio Wolff</a></p>
+            <a href="#" class="back-to-top">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m18 15-6-6-6 6"/>
+                </svg>
+                Back to top
+            </a>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

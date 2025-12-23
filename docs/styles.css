@@ -1644,6 +1644,15 @@ section:has(.about-content) {
     margin-bottom: 0;
 }
 
+.collapsible-inner code {
+    background: rgba(139, 92, 246, 0.15);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+    font-size: 15px;
+    color: var(--accent-bright);
+}
+
 @media (max-width: 734px) {
     .collapsible-header {
         padding: 20px 22px;
