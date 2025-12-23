@@ -71,7 +71,7 @@
                         <div class="collapsible-content">
                             <div class="collapsible-inner">
                                 <p>The installer sets up: Homebrew (package manager), Xcode Command Line Tools, Ghostty (terminal), GitHub Desktop, Claude Code, Starship (prompt), Node.js, Bun, Git, GitHub CLI, and CLI utilities (ripgrep, fzf, eza, bat, jq). It also configures SSH keys, shell aliases, and MCP servers.</p>
-                                <p>Everything is open source and widely used in the developer community. You can uninstall any component later.</p>
+                                <p>If any tool is already installed, the installer will skip it automatically. Everything is open source and widely used in the developer community.</p>
                             </div>
                         </div>
                     </div>
@@ -100,7 +100,7 @@
                         </button>
                         <div class="collapsible-content">
                             <div class="collapsible-inner">
-                                <p>10-20 minutes depending on your internet speed and whether you already have some components installed. The longest part is usually downloading and installing Xcode Command Line Tools (if not already present).</p>
+                                <p>1-5 minutes depending on your internet speed and whether you already have some components installed. The longest part is usually downloading and installing Xcode Command Line Tools (if not already present).</p>
                             </div>
                         </div>
                     </div>
@@ -122,6 +122,20 @@
 
                     <div class="collapsible-section">
                         <button class="collapsible-header" aria-expanded="false">
+                            <h2>I already have some of these tools. Will they conflict?</h2>
+                            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </button>
+                        <div class="collapsible-content">
+                            <div class="collapsible-inner">
+                                <p>No. The installer checks what's already installed and skips those components. If you have Homebrew, Node, Git, or other tools already, they won't be reinstalled. The script only installs what's missing.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="collapsible-section">
+                        <button class="collapsible-header" aria-expanded="false">
                             <h2>Can I customize what gets installed?</h2>
                             <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="6 9 12 15 18 9"/>
@@ -129,8 +143,7 @@
                         </button>
                         <div class="collapsible-content">
                             <div class="collapsible-inner">
-                                <p>The installer is designed as an opinionated all-in-one setup. However, you can fork the GitHub repo and modify the install.sh script to skip components you don't want.</p>
-                                <p>After installation, you can uninstall any tool using Homebrew: <code>brew uninstall tool-name</code></p>
+                                <p>The installer is designed as an opinionated all-in-one setup. You can fork the GitHub repo and modify the install.sh script to skip components, or uninstall tools after installation: <code>brew uninstall tool-name</code></p>
                             </div>
                         </div>
                     </div>
@@ -159,10 +172,12 @@
                         </button>
                         <div class="collapsible-content">
                             <div class="collapsible-inner">
-                                <p>Use Homebrew to keep everything up to date:</p>
+                                <p>Most tools are managed by Homebrew:</p>
                                 <p><code>brew update</code> — Update Homebrew itself<br>
                                 <code>brew upgrade</code> — Update all installed packages<br>
                                 <code>brew upgrade package-name</code> — Update a specific package</p>
+                                <p>For Claude Code: <code>brew upgrade claude</code><br>
+                                For Bun: <code>brew upgrade bun</code></p>
                             </div>
                         </div>
                     </div>
@@ -211,20 +226,6 @@
                                 <p>To remove individual tools: <code>brew uninstall package-name</code><br>
                                 To remove Homebrew entirely: <code>/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)"</code></p>
                                 <p>To restore your shell config: Replace ~/.zshrc with your backup file.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="collapsible-section">
-                        <button class="collapsible-header" aria-expanded="false">
-                            <h2>I already have some of these tools. Will they conflict?</h2>
-                            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <polyline points="6 9 12 15 18 9"/>
-                            </svg>
-                        </button>
-                        <div class="collapsible-content">
-                            <div class="collapsible-inner">
-                                <p>No. The installer checks what's already installed and skips those components. If you have Homebrew, Node, Git, or other tools already, they won't be reinstalled. The script only installs what's missing.</p>
                             </div>
                         </div>
                     </div>

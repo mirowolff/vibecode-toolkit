@@ -108,6 +108,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const section = header.parentElement;
             const isActive = section.classList.contains('active');
 
+            // Close all other sections
+            collapsibleHeaders.forEach(otherHeader => {
+                const otherSection = otherHeader.parentElement;
+                if (otherSection !== section && otherSection.classList.contains('active')) {
+                    otherSection.classList.remove('active');
+                    otherHeader.setAttribute('aria-expanded', 'false');
+                }
+            });
+
             // Toggle active state
             section.classList.toggle('active');
 

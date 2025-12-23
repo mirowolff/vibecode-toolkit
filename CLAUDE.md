@@ -52,3 +52,4 @@ GitHub Actions automatically deploys `docs/` to GitHub Pages on push to main. In
 ## Target Audience
 
 Designers transitioning to coding - prioritizes simplicity and guided experience over customization.
+- When script version changes, change on html pages
