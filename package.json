@@ -1,0 +1,7 @@
+{
+  "name": "vibecode-toolkit",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "bun run server.js"
+  }
+}
