@@ -1,7 +1,7 @@
 <div align="center">
   <img src="docs/img/logo.png" alt="Vibecode Toolkit" width="128">
   <h1>Vibecode Toolkit</h1>
-  <p>One command to set up your Mac for vibecoding</p>
+  <p>One command to set up your Mac for vibecoding locally</p>
   <br>
   <p>
     <a href="https://mirowolff.github.io/vibecode-toolkit/">Website</a> •
